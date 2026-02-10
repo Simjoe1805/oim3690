@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Favorite Watches</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #f0f0f0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 3px solid #d4af37;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            color: #d4af37;
+            margin-bottom: 10px;
+            font-weight: normal;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            color: #aaa;
+            font-style: italic;
+        }
+
+        nav {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: #d4af37;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #d4af37;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        section h2 {
+            color: #d4af37;
+            font-size: 2em;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 10px;
+        }
+
+        article {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #d4af37;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        article:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        article h3 {
+            color: #d4af37;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            font-weight: normal;
+        }
+
+        article p {
+            margin-bottom: 15px;
+            color: #ddd;
+            line-height: 1.8;
+        }
+
+        .specs {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-left: 4px solid #d4af37;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .specs h4 {
+            color: #d4af37;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .specs ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .specs li {
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .specs li:before {
+            content: "⌚ ";
+            position: absolute;
+            left: 0;
+            color: #d4af37;
+        }
+
+        figure {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #d4af37;
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto;
+            max-height: 400px;
+        }
+
+        figcaption {
+            color: #aaa;
+            font-style: italic;
+            margin-top: 10px;
+            font-size: 0.95em;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            border-top: 3px solid #d4af37;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 60px;
+            color: #aaa;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        footer a {
+            color: #d4af37;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            nav a {
+                display: block;
+                margin: 10px 0;
+            }
+
+            article {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>My Favorite Watches</h1>
+        <p>A Collection of Iconic Timepieces</p>
+    </header>
+
+    <nav>
+        <a href="#daytona">Daytona Platinum</a>
+        <a href="#patek">5712R Patek Philippe</a>
+        <a href="#skeleton">AP Skeleton</a>
+    </nav>
+
+    <main>
+        <section>
+            <h2>Featured Timepieces</h2>
+            <p style="text-align: center; color: #aaa; margin-bottom: 40px;">
+                Explore three legendary watches that define precision, craftsmanship, and timeless elegance.
+            </p>
+
+            <article id="daytona">
+                <h3>Rolex Daytona Platinum</h3>
+                <figure>
+                    <img src="https://via.placeholder.com/400x300?text=Rolex+Daytona+Platinum" alt="Rolex Daytona Platinum watch">
+                    <figcaption>The legendary Rolex Daytona in platinum, a symbol of racing heritage</figcaption>
+                </figure>
+                <p>
+                    The Rolex Daytona Platinum represents the pinnacle of sports watch engineering. Designed for precision timing at the racetrack, this chronograph combines heritage with modern sophistication.
+                </p>
+                <div class="specs">
+                    <h4>Key Specifications</h4>
+                    <ul>
+                        <li><strong>Case Material:</strong> 950 Platinum</li>
+                        <li><strong>Case Diameter:</strong> 40mm</li>
+                        <li><strong>Movement:</strong> Chronograph automatic</li>
+                        <li><strong>Water Resistance:</strong> 100m</li>
+                        <li><strong>Bezel:</strong> Tachymeter scale</li>
+                        <li><strong>Year:</strong> Contemporary model</li>
+                    </ul>
+                </div>
+                <p>
+                    The platinum case adds a luxurious weight and presence to the wrist. Its enduring design has remained virtually unchanged for decades, a testament to its perfect proportions. Perfect for collectors who appreciate racing history and Swiss precision.
+                </p>
+            </article>
+
+            <article id="patek">
+                <h3>Patek Philippe 5712R Aquanaut</h3>
+                <figure>
+                    <img src="https://via.placeholder.com/400x300?text=Patek+Philippe+5712R" alt="Patek Philippe 5712R Aquanaut watch">
+                    <figcaption>The sophisticated Patek Philippe 5712R in rose gold</figcaption>
+                </figure>
+                <p>
+                    The Patek Philippe 5712R is a modern classic that bridges the gap between formal elegance and sporty versatility. This rose gold Aquanaut combines contemporary aesthetics with Patek Philippe's legendary watchmaking heritage.
+                </p>
+                <div class="specs">
+                    <h4>Key Specifications</h4>
+                    <ul>
+                        <li><strong>Case Material:</strong> 18K rose gold</li>
+                        <li><strong>Case Diameter:</strong> 40.8mm</li>
+                        <li><strong>Movement:</strong> Automatic caliber 26-650</li>
+                        <li><strong>Water Resistance:</strong> 300m</li>
+                        <li><strong>Dial:</strong> Sunburst finish</li>
+                        <li><strong>Release Date:</strong> 2017</li>
+                    </ul>
+                </div>
+                <p>
+                    With its distinctive rounded square case and integrated bracelet, the 5712R showcases Patek Philippe's commitment to innovation. The rose gold material brings warmth and presence, while maintaining the professional appearance necessary for both casual and formal settings. A true investment timepiece.
+                </p>
+            </article>
+
+            <article id="skeleton">
+                <h3>Audemars Piguet Royal Oak Skeleton</h3>
+                <figure>
+                    <img src="https://via.placeholder.com/400x300?text=AP+Royal+Oak+Skeleton" alt="Audemars Piguet Royal Oak Skeleton watch">
+                    <figcaption>The striking Audemars Piguet Royal Oak Skeleton with visible mechanism</figcaption>
+                </figure>
+                <p>
+                    The Audemars Piguet Royal Oak Skeleton is a masterpiece of haute horlogerie. With its transparent dial revealing the intricate mechanical movement, this watch is a celebration of watchmaking artistry and engineering excellence.
+                </p>
+                <div class="specs">
+                    <h4>Key Specifications</h4>
+                    <ul>
+                        <li><strong>Case Material:</strong> Stainless Steel or Precious Metal</li>
+                        <li><strong>Case Diameter:</strong> 41mm</li>
+                        <li><strong>Movement:</strong> Automatic caliber 3120</li>
+                        <li><strong>Water Resistance:</strong> 100m</li>
+                        <li><strong>Special Feature:</strong> Skeleton dial with visible mechanism</li>
+                        <li><strong>Power Reserve:</strong> Approximately 60 hours</li>
+                    </ul>
+                </div>
+                <p>
+                    The skeleton dial showcases the elaborate movement, with skeletonized bridges and visible components finished to the highest standards. The 41mm octagonal case maintains the iconic AP Royal Oak proportions, while the open dial design provides a constant reminder of the precision engineering within. A true horological spectacle on the wrist.
+                </p>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 My Favorite Watches Collection. All rights reserved.</p>
+        <p><a href="index.html">Back to Home</a> | <a href="s06.demo.html">HTML Demo</a></p>
+    </footer>
+
+</body>
+</html>
