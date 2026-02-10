@@ -13,43 +13,54 @@
 
         body {
             font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-            color: #f0f0f0;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #e0e0e0;
             line-height: 1.6;
         }
 
         header {
-            background: rgba(0, 0, 0, 0.7);
+            background: #000;
             padding: 40px 20px;
             text-align: center;
-            border-bottom: 3px solid #d4af37;
+            border-bottom: 3px solid #fff;
         }
 
         header h1 {
             font-size: 2.5em;
-            color: #d4af37;
+            color: #fff;
             margin-bottom: 10px;
             font-weight: normal;
             letter-spacing: 2px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+        }
+
+        header h1:hover {
+            letter-spacing: 4px;
+            transform: scale(1.05);
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
         }
 
         header p {
             font-size: 1.1em;
-            color: #aaa;
+            color: #999;
             font-style: italic;
         }
 
         nav {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.9);
             padding: 15px 20px;
             text-align: center;
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 1px solid #333;
         }
 
         nav a {
-            color: #d4af37;
+            color: #fff;
             text-decoration: none;
             margin: 0 20px;
             font-size: 1em;
@@ -57,8 +68,7 @@
         }
 
         nav a:hover {
-            color: #fff;
-            text-shadow: 0 0 10px #d4af37;
+            color: #bbb;
         }
 
         main {
@@ -72,16 +82,28 @@
         }
 
         section h2 {
-            color: #d4af37;
+            color: #fff;
             font-size: 2em;
             margin-bottom: 30px;
-            border-bottom: 2px solid #d4af37;
+            border-bottom: 2px solid #fff;
             padding-bottom: 10px;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        section h2:hover {
+            letter-spacing: 2px;
+            transform: translateX(10px);
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+            border-bottom-color: #ccc;
         }
 
         article {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid #d4af37;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid #333;
             padding: 30px;
             margin-bottom: 30px;
             border-radius: 8px;
@@ -90,32 +112,48 @@
 
         article:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+            border-color: #555;
         }
 
         article h3 {
-            color: #d4af37;
+            color: #fff;
             font-size: 1.8em;
             margin-bottom: 15px;
             font-weight: normal;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(90deg, #fff 0%, #fff 100%);
+            background-position: 0 100%;
+            background-size: 0 2px;
+            background-repeat: no-repeat;
+        }
+
+        article h3:hover {
+            letter-spacing: 1px;
+            transform: translateX(8px) scale(1.02);
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+            background-size: 100% 2px;
         }
 
         article p {
             margin-bottom: 15px;
-            color: #ddd;
+            color: #ccc;
             line-height: 1.8;
         }
 
         .specs {
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.05);
             padding: 20px;
-            border-left: 4px solid #d4af37;
+            border-left: 4px solid #fff;
             margin: 20px 0;
             border-radius: 4px;
         }
 
         .specs h4 {
-            color: #d4af37;
+            color: #fff;
             margin-bottom: 10px;
             font-size: 1.1em;
         }
@@ -129,13 +167,14 @@
             padding: 8px 0;
             padding-left: 20px;
             position: relative;
+            color: #ddd;
         }
 
         .specs li:before {
             content: "⌚ ";
             position: absolute;
             left: 0;
-            color: #d4af37;
+            color: #fff;
         }
 
         figure {
@@ -146,7 +185,7 @@
         figure img {
             max-width: 100%;
             height: auto;
-            border: 2px solid #d4af37;
+            border: 2px solid #333;
             border-radius: 8px;
             display: block;
             margin: 0 auto;
@@ -154,19 +193,19 @@
         }
 
         figcaption {
-            color: #aaa;
+            color: #888;
             font-style: italic;
             margin-top: 10px;
             font-size: 0.95em;
         }
 
         footer {
-            background: rgba(0, 0, 0, 0.8);
-            border-top: 3px solid #d4af37;
+            background: #000;
+            border-top: 3px solid #fff;
             padding: 40px 20px;
             text-align: center;
             margin-top: 60px;
-            color: #aaa;
+            color: #888;
         }
 
         footer p {
@@ -174,7 +213,7 @@
         }
 
         footer a {
-            color: #d4af37;
+            color: #fff;
             text-decoration: none;
         }
 
@@ -221,8 +260,8 @@
             <article id="daytona">
                 <h3>Rolex Daytona Platinum</h3>
                 <figure>
-                    <img src="https://via.placeholder.com/400x300?text=Rolex+Daytona+Platinum" alt="Rolex Daytona Platinum watch">
-                    <figcaption>The legendary Rolex Daytona in platinum, a symbol of racing heritage</figcaption>
+                    <img src="https://cdn.watchuseek.com/attachments/daytona-platinum-iceblue-dial-jpg.5134862/" alt="Rolex Daytona Platinum watch">
+                    <figcaption>The legendary Rolex Daytona in platinum with ice blue dial, a symbol of racing heritage</figcaption>
                 </figure>
                 <p>
                     The Rolex Daytona Platinum represents the pinnacle of sports watch engineering. Designed for precision timing at the racetrack, this chronograph combines heritage with modern sophistication.
@@ -246,7 +285,7 @@
             <article id="patek">
                 <h3>Patek Philippe 5712R Aquanaut</h3>
                 <figure>
-                    <img src="https://via.placeholder.com/400x300?text=Patek+Philippe+5712R" alt="Patek Philippe 5712R Aquanaut watch">
+                    <img src="https://www.patek.com/en/watches/aquanaut/5712r-001" alt="Patek Philippe 5712R Aquanaut watch">
                     <figcaption>The sophisticated Patek Philippe 5712R in rose gold</figcaption>
                 </figure>
                 <p>
@@ -271,7 +310,7 @@
             <article id="skeleton">
                 <h3>Audemars Piguet Royal Oak Skeleton</h3>
                 <figure>
-                    <img src="https://via.placeholder.com/400x300?text=AP+Royal+Oak+Skeleton" alt="Audemars Piguet Royal Oak Skeleton watch">
+                    <img src="https://www.audemarspiguet.com/en/watch/royal-oak-skeleton" alt="Audemars Piguet Royal Oak Skeleton watch">
                     <figcaption>The striking Audemars Piguet Royal Oak Skeleton with visible mechanism</figcaption>
                 </figure>
                 <p>
