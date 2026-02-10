@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Basics Demo - s07</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        header, nav, main, section, footer { margin-bottom: 24px; }
+        nav a { margin-right: 12px; color: #0366d6; text-decoration: none; }
+        pre { background: #f6f8fa; padding: 10px; overflow: auto; }
+        code { background:#f1f1f1; padding:2px 4px; border-radius:3px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; }
+        figure { border:1px solid #eee; padding:8px; display:inline-block; }
+        .small { font-size: 0.9em; color: #555 }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>HTML Basics Demo (s07)</h1>
+    <p class="small">A beginner-friendly page showing common HTML tags and elements.</p>
+    <nav>
+        <a href="#text">Text</a>
+        <a href="#lists">Lists</a>
+        <a href="#media">Media</a>
+        <a href="#forms">Forms</a>
+        <a href="#semantics">Semantic</a>
+    </nav>
+</header>
+
+<main>
+    <section id="text">
+        <h2>Text and Headings</h2>
+        <h1>H1 — Main heading</h1>
+        <h2>H2 — Subheading</h2>
+        <h3>H3 — Section heading</h3>
+        <p>This is a paragraph (<code>&lt;p&gt;</code>) used for blocks of text. Use <strong>strong</strong> for important text and <em>emphasis</em> for emphasis.</p>
+        <p>Link example: <a href="https://www.example.com" target="_blank">Visit example.com</a></p>
+        <p>Line break example:<br>this is a new line inside the same paragraph.</p>
+    </section>
+
+    <section id="lists">
+        <h2>Lists</h2>
+        <h3>Unordered list (bullets)</h3>
+        <ul>
+            <li>Apple</li>
+            <li>Banana</li>
+            <li>Cherry
+                <ul>
+                    <li>More details</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>Ordered list (numbers)</h3>
+        <ol>
+            <li>First</li>
+            <li>Second</li>
+            <li>Third</li>
+        </ol>
+    </section>
+
+    <section id="media">
+        <h2>Images & Media</h2>
+        <figure>
+            <img src="https://via.placeholder.com/300x140.png?text=Demo+Image" alt="Demo image example">
+            <figcaption>Figure: an example image with a caption (<code>&lt;figure&gt;</code> + <code>&lt;figcaption&gt;</code>).</figcaption>
+        </figure>
+
+        <h3>Audio & Video</h3>
+        <audio controls>
+            <source src="" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <br>
+        <video width="320" height="180" controls>
+            <source src="" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </section>
+
+    <section id="tables">
+        <h2>Table</h2>
+        <table>
+            <thead>
+                <tr><th>Name</th><th>Age</th><th>City</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Alice</td><td>30</td><td>Boston</td></tr>
+                <tr><td>Bob</td><td>25</td><td>Chicago</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="forms">
+        <h2>Forms</h2>
+        <form action="#" method="get">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Your name">
+            <br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com">
+            <br><br>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" cols="40" placeholder="Write something..."></textarea>
+            <br><br>
+
+            <label for="color">Pick a color:</label>
+            <input type="color" id="color" name="color" value="#ff0000">
+            <br><br>
+
+            <label for="choice">Choose one:</label>
+            <select id="choice" name="choice">
+                <option value="a">Option A</option>
+                <option value="b">Option B</option>
+            </select>
+            <br><br>
+
+            <button type="submit">Send</button>
+        </form>
+    </section>
+
+    <section id="semantics">
+        <h2>Semantic Elements</h2>
+        <header>
+            <h3>Site header</h3>
+        </header>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+        </nav>
+        <article>
+            <h3>Article</h3>
+            <p>Articles represent independent pieces of content.</p>
+        </article>
+        <aside>
+            <h4>Aside</h4>
+            <p>Side content like notes or ads.</p>
+        </aside>
+        <footer>
+            <p>Footer content — contact info, copyright, etc.</p>
+        </footer>
+    </section>
+
+    <section id="other">
+        <h2>Other useful tags</h2>
+        <blockquote cite="https://www.example.com">This is a blockquote — used for quotes.</blockquote>
+        <pre><code>&lt;pre&gt; preserves whitespace and line breaks &lt;/pre&gt;</code></pre>
+        <details>
+            <summary>Click to expand (details/summary)</summary>
+            <p>Hidden content revealed when expanded.</p>
+        </details>
+        <p>Inline element example: <span style="color: #d00;">red text</span></p>
+    </section>
+</main>
+
+<footer>
+    <p class="small">Saved: s07.demo.html — basic HTML tag examples for beginners.</p>
+</footer>
+
+</body>
+</html>
