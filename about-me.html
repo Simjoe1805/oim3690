@@ -138,6 +138,79 @@
             background-size: 100% 2px;
         }
 
+        #daytona h3 {
+            color: #87CEEB !important;
+            text-shadow: 0 0 10px rgba(135, 206, 235, 0.5);
+        }
+
+        #patek h3 {
+            color: #D4A574 !important;
+            text-shadow: 0 0 10px rgba(212, 165, 116, 0.7),
+                         0 0 20px rgba(212, 165, 116, 0.5),
+                         0 0 30px rgba(212, 165, 116, 0.3);
+        }
+
+        #skeleton h3 {
+            color: #C0C0C0 !important;
+            text-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
+        }
+
+        details {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid #444;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        details:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: #666;
+        }
+
+        summary {
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            user-select: none;
+            transition: color 0.3s ease;
+        }
+
+        summary:hover {
+            color: #ddd;
+        }
+
+        details[open] {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        details[open] summary {
+            margin-bottom: 10px;
+        }
+
+        details p {
+            margin: 10px 0;
+        }
+
+        .multimedia {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .multimedia iframe {
+            max-width: 100%;
+            height: 300px;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+
+        .multimedia audio {
+            width: 100%;
+            max-width: 500px;
+        }
+
         article p {
             margin-bottom: 15px;
             color: #ccc;
@@ -158,19 +231,26 @@
             font-size: 1.1em;
         }
 
-        .specs ul {
+        .specs dl {
             list-style: none;
             padding-left: 0;
         }
 
-        .specs li {
+        .specs dt {
             padding: 8px 0;
             padding-left: 20px;
             position: relative;
             color: #ddd;
+            font-weight: bold;
         }
 
-        .specs li:before {
+        .specs dd {
+            padding: 0 0 10px 20px;
+            color: #ccc;
+            margin: 0;
+        }
+
+        .specs dt:before {
             content: "⌚ ";
             position: absolute;
             left: 0;
@@ -263,48 +343,100 @@
                     <img src="https://cdn.watchuseek.com/attachments/daytona-platinum-iceblue-dial-jpg.5134862/" alt="Rolex Daytona Platinum watch">
                     <figcaption>The legendary Rolex Daytona in platinum with ice blue dial, a symbol of racing heritage</figcaption>
                 </figure>
+                <figure>
+                    <img src="https://www.rolexforums.com/attachment.php?attachmentid=123456" alt="Rolex Daytona Platinum detail">
+                    <figcaption>Close-up of the platinum chronograph pushers and bezel</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://www.watchesbysjx.com/images/daytona-platinum-side.jpg" alt="Rolex Daytona Platinum side view">
+                    <figcaption>Side profile showcasing the 40mm case thickness</figcaption>
+                </figure>
                 <p>
                     The Rolex Daytona Platinum represents the pinnacle of sports watch engineering. Designed for precision timing at the racetrack, this chronograph combines heritage with modern sophistication.
                 </p>
+                <div class="multimedia">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                </div>
                 <div class="specs">
                     <h4>Key Specifications</h4>
-                    <ul>
-                        <li><strong>Case Material:</strong> 950 Platinum</li>
-                        <li><strong>Case Diameter:</strong> 40mm</li>
-                        <li><strong>Movement:</strong> Chronograph automatic</li>
-                        <li><strong>Water Resistance:</strong> 100m</li>
-                        <li><strong>Bezel:</strong> Tachymeter scale</li>
-                        <li><strong>Year:</strong> Contemporary model</li>
-                    </ul>
+                    <dl>
+                        <dt>Case Material</dt>
+                        <dd>950 Platinum</dd>
+                        <dt>Case Diameter</dt>
+                        <dd>40mm</dd>
+                        <dt>Movement</dt>
+                        <dd>Chronograph automatic</dd>
+                        <dt>Water Resistance</dt>
+                        <dd>100m</dd>
+                        <dt>Bezel</dt>
+                        <dd>Tachymeter scale</dd>
+                        <dt>Year</dt>
+                        <dd>Contemporary model</dd>
+                    </dl>
                 </div>
-                <p>
-                    The platinum case adds a luxurious weight and presence to the wrist. Its enduring design has remained virtually unchanged for decades, a testament to its perfect proportions. Perfect for collectors who appreciate racing history and Swiss precision.
-                </p>
+                <details>
+                    <summary>📌 Why I Love This Watch</summary>
+                    <p>
+                        The platinum case adds a luxurious weight and presence to the wrist. Its enduring design has remained virtually unchanged for decades, a testament to its perfect proportions. The ice blue dial is a modern addition that elevates the classic racing heritage. Perfect for collectors who appreciate racing history and Swiss precision.
+                    </p>
+                </details>
+                <details>
+                    <summary>🏎️ Racing Heritage</summary>
+                    <p>
+                        The Daytona was created in 1963 to commemorate the 24-hour Daytona racing event. Its tachymeter bezel allows drivers to measure average speed directly from the watch. The chronograph function was essential for lap timing, making it the choice of professional racing drivers and collectors worldwide.
+                    </p>
+                </details>
             </article>
 
             <article id="patek">
-                <h3>Patek Philippe 5712R Aquanaut</h3>
+                <h3>Patek Philippe 5712R Nautilus</h3>
                 <figure>
                     <img src="https://www.patek.com/en/watches/aquanaut/5712r-001" alt="Patek Philippe 5712R Aquanaut watch">
                     <figcaption>The sophisticated Patek Philippe 5712R in rose gold</figcaption>
                 </figure>
+                <figure>
+                    <img src="https://www.patek.com/en/watches/aquanaut/5712r-dial" alt="Patek Philippe 5712R dial detail">
+                    <figcaption>Sunburst dial with integrated bracelet design</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://www.patek.com/en/watches/aquanaut/5712r-bracelet" alt="Patek Philippe 5712R bracelet">
+                    <figcaption>Integrated rose gold bracelet with polished center links</figcaption>
+                </figure>
                 <p>
                     The Patek Philippe 5712R is a modern classic that bridges the gap between formal elegance and sporty versatility. This rose gold Aquanaut combines contemporary aesthetics with Patek Philippe's legendary watchmaking heritage.
                 </p>
+                <div class="multimedia">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                </div>
                 <div class="specs">
                     <h4>Key Specifications</h4>
-                    <ul>
-                        <li><strong>Case Material:</strong> 18K rose gold</li>
-                        <li><strong>Case Diameter:</strong> 40.8mm</li>
-                        <li><strong>Movement:</strong> Automatic caliber 26-650</li>
-                        <li><strong>Water Resistance:</strong> 300m</li>
-                        <li><strong>Dial:</strong> Sunburst finish</li>
-                        <li><strong>Release Date:</strong> 2017</li>
-                    </ul>
+                    <dl>
+                        <dt>Case Material</dt>
+                        <dd>18K rose gold</dd>
+                        <dt>Case Diameter</dt>
+                        <dd>40.8mm</dd>
+                        <dt>Movement</dt>
+                        <dd>Automatic caliber 26-650</dd>
+                        <dt>Water Resistance</dt>
+                        <dd>300m</dd>
+                        <dt>Dial</dt>
+                        <dd>Sunburst finish</dd>
+                        <dt>Release Date</dt>
+                        <dd>2017</dd>
+                    </dl>
                 </div>
-                <p>
-                    With its distinctive rounded square case and integrated bracelet, the 5712R showcases Patek Philippe's commitment to innovation. The rose gold material brings warmth and presence, while maintaining the professional appearance necessary for both casual and formal settings. A true investment timepiece.
-                </p>
+                <details>
+                    <summary>✨ Why I Love This Watch</summary>
+                    <p>
+                        With its distinctive rounded square case and integrated bracelet, the 5712R showcases Patek Philippe's commitment to innovation. The rose gold material brings warmth and presence, while maintaining the professional appearance necessary for both casual and formal settings. A true investment timepiece that appreciates in value.
+                    </p>
+                </details>
+                <details>
+                    <summary>👑 Patek Philippe Legacy</summary>
+                    <p>
+                        Founded in 1839, Patek Philippe remains one of the most prestigious watchmakers in the world. Known for exceptional quality, innovative movements, and timeless designs, each Patek Philippe watch is a masterpiece of precision engineering and artistic excellence. The 5712R represents the best of modern Patek Philippe design.
+                    </p>
+                </details>
             </article>
 
             <article id="skeleton">
@@ -313,30 +445,58 @@
                     <img src="https://www.audemarspiguet.com/en/watch/royal-oak-skeleton" alt="Audemars Piguet Royal Oak Skeleton watch">
                     <figcaption>The striking Audemars Piguet Royal Oak Skeleton with visible mechanism</figcaption>
                 </figure>
+                <figure>
+                    <img src="https://www.audemarspiguet.com/en/watch/royal-oak-skeleton-movement" alt="Audemars Piguet Royal Oak Skeleton movement">
+                    <figcaption>Intricate caliber 3120 visible through the skeleton dial</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://www.audemarspiguet.com/en/watch/royal-oak-skeleton-case" alt="Audemars Piguet Royal Oak octagonal case">
+                    <figcaption>Iconic octagonal case with integrated bracelet</figcaption>
+                </figure>
                 <p>
                     The Audemars Piguet Royal Oak Skeleton is a masterpiece of haute horlogerie. With its transparent dial revealing the intricate mechanical movement, this watch is a celebration of watchmaking artistry and engineering excellence.
                 </p>
+                <div class="multimedia">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                </div>
                 <div class="specs">
                     <h4>Key Specifications</h4>
-                    <ul>
-                        <li><strong>Case Material:</strong> Stainless Steel or Precious Metal</li>
-                        <li><strong>Case Diameter:</strong> 41mm</li>
-                        <li><strong>Movement:</strong> Automatic caliber 3120</li>
-                        <li><strong>Water Resistance:</strong> 100m</li>
-                        <li><strong>Special Feature:</strong> Skeleton dial with visible mechanism</li>
-                        <li><strong>Power Reserve:</strong> Approximately 60 hours</li>
-                    </ul>
+                    <dl>
+                        <dt>Case Material</dt>
+                        <dd>Stainless Steel or Precious Metal</dd>
+                        <dt>Case Diameter</dt>
+                        <dd>41mm</dd>
+                        <dt>Movement</dt>
+                        <dd>Automatic caliber 3120</dd>
+                        <dt>Water Resistance</dt>
+                        <dd>100m</dd>
+                        <dt>Special Feature</dt>
+                        <dd>Skeleton dial with visible mechanism</dd>
+                        <dt>Power Reserve</dt>
+                        <dd>Approximately 60 hours</dd>
+                    </dl>
                 </div>
-                <p>
-                    The skeleton dial showcases the elaborate movement, with skeletonized bridges and visible components finished to the highest standards. The 41mm octagonal case maintains the iconic AP Royal Oak proportions, while the open dial design provides a constant reminder of the precision engineering within. A true horological spectacle on the wrist.
-                </p>
+                <details>
+                    <summary>⚙️ Why I Love This Watch</summary>
+                    <p>
+                        The skeleton dial showcases the elaborate movement, with skeletonized bridges and visible components finished to the highest standards. The 41mm octagonal case maintains the iconic AP Royal Oak proportions, while the open dial design provides a constant reminder of the precision engineering within. A true horological spectacle on the wrist.
+                    </p>
+                </details>
+                <details>
+                    <summary>🏛️ AP Royal Oak History</summary>
+                    <p>
+                        The Audemars Piguet Royal Oak revolutionized watchmaking when it debuted in 1972 as the first luxury steel sports watch. Its iconic octagonal bezel and integrated bracelet influenced the entire industry. The skeleton variant takes this legendary design and turns it into a window to mechanical artistry, combining form with function perfectly.
+                    </p>
+                </details>
             </article>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 My Favorite Watches Collection. All rights reserved.</p>
-        <p><a href="index.html">Back to Home</a> | <a href="s06.demo.html">HTML Demo</a></p>
+        <address>
+            <p>&copy; 2026 My Favorite Watches Collection. All rights reserved.</p>
+            <p><a href="index.html">Back to Home</a> | <a href="s06.demo.html">HTML Demo</a></p>
+        </address>
     </footer>
 
 </body>
