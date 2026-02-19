@@ -1,0 +1,53 @@
+/* Color variables (edit in HTML <style> or here as fallback) */
+:root {
+	--primary-color: blue;
+	--text-color: green;
+	--focus-color: #ff9800;
+}
+
+/* Basic element coloring */
+h1 {
+	color: var(--primary-color);
+}
+
+p {
+	color: var(--text-color);
+}
+
+/* Links and nav */
+nav a {
+	color: var(--primary-color);
+	text-decoration: none;
+}
+
+/* Footer */
+footer p {
+	color: var(--text-color);
+}
+
+/* Accessibility: visible skip link on focus */
+.skip-link {
+	position: absolute;
+	left: -999px;
+	top: auto;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+}
+.skip-link:focus {
+	position: static;
+	left: 0;
+	width: auto;
+	height: auto;
+	padding: 8px 12px;
+	background: #fff;
+	border: 2px solid var(--focus-color);
+	color: var(--primary-color);
+	z-index: 1000;
+}
+
+/* Clear focus outline for keyboard navigation */
+a:focus, button:focus {
+	outline: 3px solid var(--focus-color);
+	outline-offset: 2px;
+}

@@ -4,318 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Favorite Watches</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-            color: #e0e0e0;
-            line-height: 1.6;
-        }
-
-        header {
-            background: #000;
-            padding: 40px 20px;
-            text-align: center;
-            border-bottom: 3px solid #fff;
-        }
-
-        header h1 {
-            font-size: 2.5em;
-            color: #fff;
-            margin-bottom: 10px;
-            font-weight: normal;
-            letter-spacing: 2px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
-            position: relative;
-            display: inline-block;
-        }
-
-        header h1:hover {
-            letter-spacing: 4px;
-            transform: scale(1.05);
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-        }
-
-        header p {
-            font-size: 1.1em;
-            color: #999;
-            font-style: italic;
-        }
-
-        nav {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 15px 20px;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid #333;
-        }
-
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 20px;
-            font-size: 1em;
-            transition: color 0.3s ease;
-        }
-
-        nav a:hover {
-            color: #bbb;
-        }
-
-        main {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        section {
-            margin-bottom: 60px;
-        }
-
-        section h2 {
-            color: #fff;
-            font-size: 2em;
-            margin-bottom: 30px;
-            border-bottom: 2px solid #fff;
-            padding-bottom: 10px;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
-            position: relative;
-            display: inline-block;
-            width: 100%;
-        }
-
-        section h2:hover {
-            letter-spacing: 2px;
-            transform: translateX(10px);
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-            border-bottom-color: #ccc;
-        }
-
-        article {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid #333;
-            padding: 30px;
-            margin-bottom: 30px;
-            border-radius: 8px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        article:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
-            border-color: #555;
-        }
-
-        article h3 {
-            color: #fff;
-            font-size: 1.8em;
-            margin-bottom: 15px;
-            font-weight: normal;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
-            position: relative;
-            display: inline-block;
-            background: linear-gradient(90deg, #fff 0%, #fff 100%);
-            background-position: 0 100%;
-            background-size: 0 2px;
-            background-repeat: no-repeat;
-        }
-
-        article h3:hover {
-            letter-spacing: 1px;
-            transform: translateX(8px) scale(1.02);
-            text-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
-            background-size: 100% 2px;
-        }
-
-        #daytona h3 {
-            color: #87CEEB !important;
-            text-shadow: 0 0 10px rgba(135, 206, 235, 0.5);
-        }
-
-        #patek h3 {
-            color: #D4A574 !important;
-            text-shadow: 0 0 10px rgba(212, 165, 116, 0.7),
-                         0 0 20px rgba(212, 165, 116, 0.5),
-                         0 0 30px rgba(212, 165, 116, 0.3);
-        }
-
-        #skeleton h3 {
-            color: #C0C0C0 !important;
-            text-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
-        }
-
-        details {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid #444;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        details:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: #666;
-        }
-
-        summary {
-            color: #fff;
-            font-weight: bold;
-            cursor: pointer;
-            user-select: none;
-            transition: color 0.3s ease;
-        }
-
-        summary:hover {
-            color: #ddd;
-        }
-
-        details[open] {
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        details[open] summary {
-            margin-bottom: 10px;
-        }
-
-        details p {
-            margin: 10px 0;
-        }
-
-        .multimedia {
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        .multimedia iframe {
-            max-width: 100%;
-            height: 300px;
-            border-radius: 8px;
-            border: 1px solid #333;
-        }
-
-        .multimedia audio {
-            width: 100%;
-            max-width: 500px;
-        }
-
-        article p {
-            margin-bottom: 15px;
-            color: #ccc;
-            line-height: 1.8;
-        }
-
-        .specs {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-left: 4px solid #fff;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
-
-        .specs h4 {
-            color: #fff;
-            margin-bottom: 10px;
-            font-size: 1.1em;
-        }
-
-        .specs dl {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .specs dt {
-            padding: 8px 0;
-            padding-left: 20px;
-            position: relative;
-            color: #ddd;
-            font-weight: bold;
-        }
-
-        .specs dd {
-            padding: 0 0 10px 20px;
-            color: #ccc;
-            margin: 0;
-        }
-
-        .specs dt:before {
-            content: "⌚ ";
-            position: absolute;
-            left: 0;
-            color: #fff;
-        }
-
-        figure {
-            text-align: center;
-            margin: 30px 0;
-        }
-
-        figure img {
-            max-width: 100%;
-            height: auto;
-            border: 2px solid #333;
-            border-radius: 8px;
-            display: block;
-            margin: 0 auto;
-            max-height: 400px;
-        }
-
-        figcaption {
-            color: #888;
-            font-style: italic;
-            margin-top: 10px;
-            font-size: 0.95em;
-        }
-
-        footer {
-            background: #000;
-            border-top: 3px solid #fff;
-            padding: 40px 20px;
-            text-align: center;
-            margin-top: 60px;
-            color: #888;
-        }
-
-        footer p {
-            margin-bottom: 10px;
-        }
-
-        footer a {
-            color: #fff;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 1.8em;
-            }
-
-            nav a {
-                display: block;
-                margin: 10px 0;
-            }
-
-            article {
-                padding: 20px;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/about-me.css">
 </head>
 <body>
 
@@ -330,6 +20,23 @@
         <a href="#skeleton">AP Skeleton</a>
     </nav>
 
+    <div id="dashboard-controls" role="region" aria-label="Dashboard controls">
+        <label for="search-input">Search:</label>
+        <input id="search-input" type="search" placeholder="Search watches, specs, captions..." />
+
+        <label for="filter-select">Filter:</label>
+        <select id="filter-select" aria-label="Filter watches">
+            <option value="all">All</option>
+            <option value="daytona">Daytona</option>
+            <option value="patek">Patek</option>
+            <option value="skeleton">Skeleton</option>
+        </select>
+
+        <button id="toggle-details" type="button">Toggle details</button>
+
+        <span id="visible-count" aria-live="polite">Showing 3 items</span>
+    </div>
+
     <main>
         <section>
             <h2>Featured Timepieces</h2>
@@ -337,18 +44,18 @@
                 Explore three legendary watches that define precision, craftsmanship, and timeless elegance.
             </p>
 
-            <article id="daytona">
+            <article id="daytona" data-type="daytona">
                 <h3>Rolex Daytona Platinum</h3>
                 <figure>
-                    <img src="https://cdn.watchuseek.com/attachments/daytona-platinum-iceblue-dial-jpg.5134862/" alt="Rolex Daytona Platinum watch">
+                    <img class="lightbox-img" src="https://images.unsplash.com/photo-1518544881350-9dbd1a9f3da0?auto=format&fit=crop&w=1200&q=80" alt="Rolex Daytona Platinum watch" data-caption="The legendary Rolex Daytona in platinum with ice blue dial, a symbol of racing heritage">
                     <figcaption>The legendary Rolex Daytona in platinum with ice blue dial, a symbol of racing heritage</figcaption>
                 </figure>
                 <figure>
-                    <img src="https://www.rolexforums.com/attachment.php?attachmentid=123456" alt="Rolex Daytona Platinum detail">
+                    <img class="lightbox-img" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1200&q=80" alt="Rolex Daytona Platinum detail" data-caption="Close-up of the platinum chronograph pushers and bezel">
                     <figcaption>Close-up of the platinum chronograph pushers and bezel</figcaption>
                 </figure>
                 <figure>
-                    <img src="https://www.watchesbysjx.com/images/daytona-platinum-side.jpg" alt="Rolex Daytona Platinum side view">
+                    <img class="lightbox-img" src="https://images.unsplash.com/photo-1518545158905-5d7d3f6f1d5e?auto=format&fit=crop&w=1200&q=80" alt="Rolex Daytona Platinum side view" data-caption="Side profile showcasing the 40mm case thickness">
                     <figcaption>Side profile showcasing the 40mm case thickness</figcaption>
                 </figure>
                 <p>
@@ -388,18 +95,18 @@
                 </details>
             </article>
 
-            <article id="patek">
+            <article id="patek" data-type="patek">
                 <h3>Patek Philippe 5712R Nautilus</h3>
                 <figure>
-                    <img src="https://www.patek.com/en/watches/aquanaut/5712r-001" alt="Patek Philippe 5712R Aquanaut watch">
+                    <img class="lightbox-img" src="https://images.unsplash.com/photo-1526178614256-6a0b3bb0f3a5?auto=format&fit=crop&w=1200&q=80" alt="Patek Philippe 5712R Aquanaut watch" data-caption="The sophisticated Patek Philippe 5712R in rose gold">
                     <figcaption>The sophisticated Patek Philippe 5712R in rose gold</figcaption>
                 </figure>
                 <figure>
-                    <img src="https://www.patek.com/en/watches/aquanaut/5712r-dial" alt="Patek Philippe 5712R dial detail">
+                    <img class="lightbox-img" src="https://images.unsplash.com/photo-1508542013081-0e4b0d3e6d82?auto=format&fit=crop&w=1200&q=80" alt="Patek Philippe 5712R dial detail" data-caption="Sunburst dial with integrated bracelet design">
                     <figcaption>Sunburst dial with integrated bracelet design</figcaption>
                 </figure>
                 <figure>
-                    <img src="https://www.patek.com/en/watches/aquanaut/5712r-bracelet" alt="Patek Philippe 5712R bracelet">
+                    <img class="lightbox-img" src="https://images.unsplash.com/photo-1516728778615-2d590ea1856f?auto=format&fit=crop&w=1200&q=80" alt="Patek Philippe 5712R bracelet" data-caption="Integrated rose gold bracelet with polished center links">
                     <figcaption>Integrated rose gold bracelet with polished center links</figcaption>
                 </figure>
                 <p>
@@ -439,18 +146,18 @@
                 </details>
             </article>
 
-            <article id="skeleton">
+            <article id="skeleton" data-type="skeleton">
                 <h3>Audemars Piguet Royal Oak Skeleton</h3>
                 <figure>
-                    <img src="https://www.audemarspiguet.com/en/watch/royal-oak-skeleton" alt="Audemars Piguet Royal Oak Skeleton watch">
+                    <img class="lightbox-img" src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=1200&q=80" alt="Audemars Piguet Royal Oak Skeleton watch" data-caption="The striking Audemars Piguet Royal Oak Skeleton with visible mechanism">
                     <figcaption>The striking Audemars Piguet Royal Oak Skeleton with visible mechanism</figcaption>
                 </figure>
                 <figure>
-                    <img src="https://www.audemarspiguet.com/en/watch/royal-oak-skeleton-movement" alt="Audemars Piguet Royal Oak Skeleton movement">
+                    <img class="lightbox-img" src="https://images.unsplash.com/photo-1490367532201-b9bc1dc483f6?auto=format&fit=crop&w=1200&q=80" alt="Audemars Piguet Royal Oak Skeleton movement" data-caption="Intricate caliber 3120 visible through the skeleton dial">
                     <figcaption>Intricate caliber 3120 visible through the skeleton dial</figcaption>
                 </figure>
                 <figure>
-                    <img src="https://www.audemarspiguet.com/en/watch/royal-oak-skeleton-case" alt="Audemars Piguet Royal Oak octagonal case">
+                    <img class="lightbox-img" src="https://images.unsplash.com/photo-1518544881350-9dbd1a9f3da0?auto=format&fit=crop&w=1200&q=80" alt="Audemars Piguet Royal Oak octagonal case" data-caption="Iconic octagonal case with integrated bracelet">
                     <figcaption>Iconic octagonal case with integrated bracelet</figcaption>
                 </figure>
                 <p>
@@ -499,5 +206,107 @@
         </address>
     </footer>
 
+    <!-- Lightbox modal -->
+    <div id="lightbox" aria-hidden="true">
+        <button id="lightbox-close" aria-label="Close image">✕</button>
+        <img id="lightbox-img" src="" alt="" />
+        <p id="lightbox-caption"></p>
+    </div>
+
+    <script>
+        (function(){
+            const images = document.querySelectorAll('.lightbox-img');
+            const lightbox = document.getElementById('lightbox');
+            const lbImg = document.getElementById('lightbox-img');
+            const lbCaption = document.getElementById('lightbox-caption');
+            const lbClose = document.getElementById('lightbox-close');
+
+            function open(src, alt, caption){
+                lbImg.src = src;
+                lbImg.alt = alt || '';
+                lbCaption.textContent = caption || '';
+                lightbox.style.display = 'flex';
+                lightbox.setAttribute('aria-hidden','false');
+                lbClose.focus();
+                document.body.style.overflow = 'hidden';
+            }
+
+            function close(){
+                lightbox.style.display = 'none';
+                lightbox.setAttribute('aria-hidden','true');
+                lbImg.src = '';
+                document.body.style.overflow = '';
+            }
+
+            images.forEach(img => {
+                img.style.cursor = 'zoom-in';
+                img.addEventListener('click', () => open(img.src, img.alt, img.dataset.caption));
+                img.addEventListener('keydown', (e) => { if(e.key === 'Enter' || e.key === ' ') open(img.src, img.alt, img.dataset.caption); });
+                img.setAttribute('tabindex','0');
+            });
+
+            lbClose.addEventListener('click', close);
+            lightbox.addEventListener('click', (e) => { if(e.target === lightbox) close(); });
+            document.addEventListener('keydown', (e) => { if(e.key === 'Escape') close(); });
+        })();
+    </script>
+
+    <script>
+        (function(){
+            const searchInput = document.getElementById('search-input');
+            const filterSelect = document.getElementById('filter-select');
+            const toggleDetailsBtn = document.getElementById('toggle-details');
+            const articles = Array.from(document.querySelectorAll('main article'));
+            const visibleCount = document.getElementById('visible-count');
+            let detailsOpen = true;
+
+            function normalize(text){ return (text||'').toLowerCase(); }
+
+            function matchesFilter(article, filter){
+                if(filter === 'all') return true;
+                return article.dataset.type === filter;
+            }
+
+            function matchesSearch(article, query){
+                if(!query) return true;
+                query = normalize(query);
+                const text = normalize(article.textContent + ' ' + (article.querySelector('figcaption')?.textContent || ''));
+                return text.indexOf(query) !== -1;
+            }
+
+            function updateVisibleCount(){
+                const count = articles.filter(a => a.style.display !== 'none').length;
+                visibleCount.textContent = `Showing ${count} item${count!==1?'s':''}`;
+            }
+
+            function filterArticles(){
+                const q = searchInput.value.trim();
+                const f = filterSelect.value;
+                articles.forEach(a => {
+                    const show = matchesFilter(a,f) && matchesSearch(a,q);
+                    a.style.display = show ? '' : 'none';
+                });
+                updateVisibleCount();
+            }
+
+            searchInput.addEventListener('input', filterArticles);
+            filterSelect.addEventListener('change', filterArticles);
+
+            toggleDetailsBtn.addEventListener('click', () => {
+                detailsOpen = !detailsOpen;
+                articles.forEach(a => {
+                    a.querySelectorAll('details').forEach(d => d.open = detailsOpen);
+                });
+            });
+
+            // initialize
+            articles.forEach(a => {
+                a.querySelectorAll('details').forEach(d => d.open = true);
+            });
+            updateVisibleCount();
+        })();
+    </script>
+        })();
+    </script>
 </body>
 </html>
