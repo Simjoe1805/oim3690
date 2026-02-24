@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Simple CSS Page</title>
+  <style>
+    /* Simple CSS demo with variables, layout, and accessible focus */
+    :root{
+      --bg:#ffffff;
+      --card:#111111;
+      --text:#111111;
+      --muted:#666666;
+      --accent:#000000;
+      --radius:12px;
+    }
+
+    /* Reset */
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0}
+
+    body{
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      padding:28px;
+      display:flex;align-items:flex-start;justify-content:center;
+    }
+
+    .wrapper{max-width:960px;width:100%}
+
+    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+    header h1{font-size:20px;margin:0}
+    header p{margin:0;color:var(--muted);font-size:13px}
+
+    nav a{margin-left:12px;color:var(--muted);text-decoration:none;padding:6px 10px;border-radius:8px}
+    nav a:focus, nav a:hover{outline:2px dashed var(--accent);color:var(--text)}
+
+    .grid{display:grid;grid-template-columns:1fr 320px;gap:18px}
+    .card{background:#fff;border-radius:var(--radius);padding:18px;border:1px solid #eee}
+
+    .sidebar .card{background:var(--card);color:#fff;border:1px solid rgba(255,255,255,.06)}
+
+    h2{margin:0 0 10px}
+    p.lead{color:var(--muted);margin:0 0 12px}
+
+    .media{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .media img{width:100%;height:140px;object-fit:cover;border-radius:8px;display:block}
+
+    button{background:transparent;border:2px solid var(--accent);color:var(--accent);padding:8px 12px;border-radius:8px;cursor:pointer}
+    button:focus{outline:3px solid rgba(0,0,0,.12);outline-offset:2px}
+
+    footer{margin-top:18px;color:var(--muted);text-align:center;font-size:13px}
+
+    /* Responsive */
+    @media (max-width:800px){
+      .grid{grid-template-columns:1fr}
+      .media img{height:120px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <div>
+        <h1 style=color:red CSS Demo</h1>
+        <p>Minimal layout + variables</p>
+      </div>
+      <nav aria-label="Main">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </nav>
+    </header>
+
+    <main class="grid" role="main">
+      <section class="card">
+        <h2>Overview</h2>
+        <p class="lead">This page demonstrates a simple, clean CSS layout using variables, responsive grid, and accessible focus states.</p>
+
+        <h3>Key features</h3>
+        <ul>
+          <li>CSS variables for easy theming</li>
+          <li>Responsive two-column layout</li>
+          <li>Accessible focus outlines for keyboard users</li>
+        </ul>
+
+        <div style="margin-top:12px;" class="media" aria-label="Sample images">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=60" alt="Desk workspace">
+          <img src="https://images.unsplash.com/photo-1505685296765-3a2736de412f?auto=format&fit=crop&w=800&q=60" alt="City skyline">
+        </div>
+
+        <p style="margin-top:12px">Change the variables at the top of the <code>&lt;style&gt;</code> block to customize colors, radius, and more.</p>
+        <div style="margin-top:10px"><button type="button">Call to action</button></div>
+      </section>
+
+      <aside class="sidebar">
+        <div class="card">
+          <h2>Sidebar</h2>
+          <p class="lead">Quick links and small info.</p>
+          <ul style="padding-left:18px;margin:0;color:inherit">
+            <li>Documentation</li>
+            <li>Examples</li>
+            <li>Support</li>
+          </ul>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      Built with plain HTML & CSS — open <strong>simple-css-page.html</strong> in your browser.
+    </footer>
+  </div>
+</body>
+</html>
