@@ -6,238 +6,310 @@
 <title>What Cat Are You?</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
-}
+  body {
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(-45deg, #f5e6e8, #dfe9f3, #fef6e4, #e4f0f6);
+    background-size: 400% 400%;
+    animation: gradientMove 12s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
 
-body {
-  height: 100vh;
-  background: linear-gradient(-45deg, #f5e6e8, #dfe9f3, #fef6e4, #e4f0f6);
-  background-size: 400% 400%;
-  animation: gradientMove 12s ease infinite;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  @keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
 
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+  /* Floating cat faces */
+  .cats-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
 
-.container {
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(12px);
-  padding: 40px;
-  border-radius: 20px;
-  width: 90%;
-  max-width: 600px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-  text-align: center;
-  transition: 0.5s ease;
-}
+  .cat {
+    position: absolute;
+    font-size: 28px;
+    opacity: 0.35;
+    animation: floatUp linear infinite;
+    filter: blur(0px);
+    transform: translateY(120vh);
+  }
 
-h1 {
-  font-family: 'Playfair Display', serif;
-  margin-bottom: 20px;
-}
+  @keyframes floatUp {
+    0%   { transform: translateY(120vh) rotate(0deg); }
+    100% { transform: translateY(-20vh) rotate(360deg); }
+  }
 
-button {
-  margin-top: 20px;
-  padding: 12px 24px;
-  border-radius: 30px;
-  border: none;
-  background: #333;
-  color: white;
-  cursor: pointer;
-  transition: 0.3s;
-}
+  .container {
+    position: relative;
+    z-index: 2;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(12px);
+    padding: 40px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: 0.5s ease;
+  }
 
-button:hover {
-  background: #555;
-}
+  h1 { font-family: 'Playfair Display', serif; margin-bottom: 18px; }
+  p { line-height: 1.5; }
 
-.options button {
-  display: block;
-  width: 100%;
-  margin: 10px 0;
-  background: #fff;
-  color: #333;
-  border: 1px solid #ddd;
-}
+  button {
+    margin-top: 18px;
+    padding: 12px 24px;
+    border-radius: 30px;
+    border: none;
+    background: #333;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  button:hover { background: #555; }
 
-.options button:hover {
-  background: #f0f0f0;
-}
+  .options button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    background: #fff;
+    color: #333;
+    border: 1px solid #ddd;
+  }
+  .options button:hover { background: #f0f0f0; }
 
-.progress {
-  height: 6px;
-  background: #ddd;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  overflow: hidden;
-}
+  .progress {
+    height: 6px;
+    background: #ddd;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #333;
+    transition: 0.3s;
+  }
 
-.progress-bar {
-  height: 100%;
-  width: 0%;
-  background: #333;
-  transition: 0.3s;
-}
+  .result-cat { font-size: 54px; margin: 18px 0 10px; }
+  .chip {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(0,0,0,0.12);
+    background: rgba(255,255,255,0.6);
+    margin: 10px 0 6px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+  }
+  .fade { animation: fadeIn 0.5s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px);} to { opacity: 1; transform: translateY(0);} }
 
-.result-cat {
-  font-size: 60px;
-  margin: 20px 0;
-}
-
-.fade {
-  animation: fadeIn 0.5s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px);}
-  to { opacity: 1; transform: translateY(0);}
-}
-
+  .tiny {
+    margin-top: 10px;
+    font-size: 12px;
+    opacity: 0.7;
+  }
 </style>
 </head>
 <body>
 
+<!-- Floating cats layer -->
+<div class="cats-layer" id="catsLayer" aria-hidden="true"></div>
+
 <div class="container fade" id="app">
   <h1>What Cat Are You?</h1>
-  <p>Answer 10 questions and discover your inner feline.</p>
+  <p>Answer 10 questions and discover your MBTI—and the cat that matches your vibe.</p>
   <button onclick="startQuiz()">Start Quiz</button>
+  <div class="tiny">✨ Tip: answer fast—your first instinct is usually most accurate.</div>
 </div>
 
 <script>
+  // ---- Quiz Data ----
+  const questions = [
+    { q: "At a party you...",
+      a: [
+        { text: "Talk to everyone", type: "E" },
+        { text: "Stick to close friends", type: "I" }
+      ]
+    },
+    { q: "You trust...",
+      a: [
+        { text: "Facts & reality", type: "S" },
+        { text: "Gut & imagination", type: "N" }
+      ]
+    },
+    { q: "Decisions are based on...",
+      a: [
+        { text: "Logic", type: "T" },
+        { text: "Feelings", type: "F" }
+      ]
+    },
+    { q: "Your life is...",
+      a: [
+        { text: "Structured", type: "J" },
+        { text: "Flexible", type: "P" }
+      ]
+    },
+    { q: "Your energy comes from...",
+      a: [
+        { text: "Social interaction", type: "E" },
+        { text: "Alone time", type: "I" }
+      ]
+    },
+    { q: "You focus on...",
+      a: [
+        { text: "Present details", type: "S" },
+        { text: "Future possibilities", type: "N" }
+      ]
+    },
+    { q: "Conflict is handled with...",
+      a: [
+        { text: "Rational debate", type: "T" },
+        { text: "Emotional understanding", type: "F" }
+      ]
+    },
+    { q: "Plans make you feel...",
+      a: [
+        { text: "Comfortable", type: "J" },
+        { text: "Restricted", type: "P" }
+      ]
+    },
+    { q: "You prefer...",
+      a: [
+        { text: "Group projects", type: "E" },
+        { text: "Independent work", type: "I" }
+      ]
+    },
+    { q: "You value...",
+      a: [
+        { text: "What is practical", type: "S" },
+        { text: "What is meaningful", type: "N" }
+      ]
+    }
+  ];
 
-const questions = [
-  { q: "At a party you...",
-    a: [
-      { text: "Talk to everyone", type: "E" },
-      { text: "Stick to close friends", type: "I" }
-    ]
-  },
-  { q: "You trust...",
-    a: [
-      { text: "Facts & reality", type: "S" },
-      { text: "Gut & imagination", type: "N" }
-    ]
-  },
-  { q: "Decisions are based on...",
-    a: [
-      { text: "Logic", type: "T" },
-      { text: "Feelings", type: "F" }
-    ]
-  },
-  { q: "Your life is...",
-    a: [
-      { text: "Structured", type: "J" },
-      { text: "Flexible", type: "P" }
-    ]
-  },
-  { q: "Your energy comes from...",
-    a: [
-      { text: "Social interaction", type: "E" },
-      { text: "Alone time", type: "I" }
-    ]
-  },
-  { q: "You focus on...",
-    a: [
-      { text: "Present details", type: "S" },
-      { text: "Future possibilities", type: "N" }
-    ]
-  },
-  { q: "Conflict is handled with...",
-    a: [
-      { text: "Rational debate", type: "T" },
-      { text: "Emotional understanding", type: "F" }
-    ]
-  },
-  { q: "Plans make you feel...",
-    a: [
-      { text: "Comfortable", type: "J" },
-      { text: "Restricted", type: "P" }
-    ]
-  },
-  { q: "You prefer...",
-    a: [
-      { text: "Group projects", type: "E" },
-      { text: "Independent work", type: "I" }
-    ]
-  },
-  { q: "You value...",
-    a: [
-      { text: "What is practical", type: "S" },
-      { text: "What is meaningful", type: "N" }
-    ]
-  }
-];
-
-let current = 0;
-let scores = { E:0, I:0, S:0, N:0, T:0, F:0, J:0, P:0 };
-
-function startQuiz() {
-  current = 0;
-  scores = { E:0, I:0, S:0, N:0, T:0, F:0, J:0, P:0 };
-  showQuestion();
-}
-
-function showQuestion() {
-  const app = document.getElementById("app");
-  const question = questions[current];
-
-  app.innerHTML = `
-    <div class="progress">
-      <div class="progress-bar" style="width:${(current/10)*100}%"></div>
-    </div>
-    <h1>${question.q}</h1>
-    <div class="options">
-      ${question.a.map(ans => 
-        `<button onclick="selectAnswer('${ans.type}')">${ans.text}</button>`
-      ).join("")}
-    </div>
-  `;
-}
-
-function selectAnswer(type) {
-  scores[type]++;
-  current++;
-  if(current < questions.length) {
-    showQuestion();
-  } else {
-    showResult();
-  }
-}
-
-function showResult() {
-  const type =
-    (scores.E > scores.I ? "E":"I") +
-    (scores.S > scores.N ? "S":"N") +
-    (scores.T > scores.F ? "T":"F") +
-    (scores.J > scores.P ? "J":"P");
-
+  // ---- Full 16 MBTI → Cat mapping ----
   const catMap = {
-    INTJ: {cat:"Black Cat 🐈‍⬛", desc:"Strategic, mysterious, independent."},
-    ENFP: {cat:"Orange Tabby 🐈", desc:"Playful, chaotic, energetic."},
-    INFJ: {cat:"Ragdoll 🐱", desc:"Gentle, intuitive, deep thinker."},
-    ISTJ: {cat:"British Shorthair 🐾", desc:"Calm, responsible, reliable."}
+    INTJ: { cat: "Black Cat 🐈‍⬛",        desc: "Strategic, composed, and quietly intense. You observe first—then you act with precision." },
+    INTP: { cat: "Russian Blue 🐱",       desc: "Curious mind, minimalist vibe. Independent, analytical, and surprisingly affectionate in private." },
+    ENTJ: { cat: "Bengal Cat 🐆",         desc: "Bold, driven, high presence. You lead naturally and move like you own the room." },
+    ENTP: { cat: "Siamese Cat 🐾",        desc: "Witty, fast, and impossible to bore. You challenge ideas for fun and charm people doing it." },
+
+    INFJ: { cat: "Ragdoll 🐱",            desc: "Gentle and deep. You read people effortlessly and care in a way that feels rare." },
+    INFP: { cat: "Turkish Angora 🐈",     desc: "Dreamy, artistic, and tender. You feel life intensely and turn meaning into beauty." },
+    ENFJ: { cat: "Birman Cat 🐾",         desc: "Warm, supportive, magnetic. You bring out the best in people and create belonging." },
+    ENFP: { cat: "Orange Tabby 🐈",       desc: "Playful, energetic, chaotic-good. Your optimism is contagious and your ideas come nonstop." },
+
+    ISTJ: { cat: "British Shorthair 🐾",  desc: "Reliable, calm, and steady. You value loyalty, routine, and doing things the right way." },
+    ISFJ: { cat: "Scottish Fold 🐱",      desc: "Soft-hearted protector. You notice the small things and make people feel safe." },
+    ESTJ: { cat: "Maine Coon 🐈",         desc: "Organized, direct, dependable. You take responsibility naturally—and people trust you." },
+    ESFJ: { cat: "Persian Cat 🐱",        desc: "Social, caring, and elegant. You keep the peace and make every space feel welcoming." },
+
+    ISTP: { cat: "Tuxedo Cat 🐈‍⬛",       desc: "Chill, skillful, and self-contained. You stay cool under pressure and improvise like a pro." },
+    ISFP: { cat: "Calico Cat 🐾",         desc: "Gentle, aesthetic, free-spirited. You move through life with quiet originality." },
+    ESTP: { cat: "Abyssinian 🐈",         desc: "Adventurous, sharp, fearless. You live for the moment and turn risk into excitement." },
+    ESFP: { cat: "Sphynx Cat 😼",         desc: "Confident, expressive, and unforgettable. You bring fun, attention, and pure charisma." }
   };
 
-  const result = catMap[type] || {cat:"Mystery Cat 🐾", desc:"A rare and unique feline spirit."};
+  let current = 0;
+  let scores = { E:0, I:0, S:0, N:0, T:0, F:0, J:0, P:0 };
 
-  document.getElementById("app").innerHTML = `
-    <h1>You are ${type}</h1>
-    <div class="result-cat">${result.cat}</div>
-    <p>${result.desc}</p>
-    <button onclick="startQuiz()">Retake Quiz</button>
-  `;
-}
+  function startQuiz() {
+    current = 0;
+    scores = { E:0, I:0, S:0, N:0, T:0, F:0, J:0, P:0 };
+    showQuestion();
+  }
+
+  function showQuestion() {
+    const app = document.getElementById("app");
+    const question = questions[current];
+
+    app.innerHTML = `
+      <div class="progress">
+        <div class="progress-bar" style="width:${(current/questions.length)*100}%"></div>
+      </div>
+      <h1>${question.q}</h1>
+      <div class="options">
+        ${question.a.map(ans =>
+          `<button onclick="selectAnswer('${ans.type}')">${ans.text}</button>`
+        ).join("")}
+      </div>
+      <div class="tiny">Question ${current + 1} of ${questions.length}</div>
+    `;
+  }
+
+  function selectAnswer(type) {
+    scores[type]++;
+    current++;
+    if (current < questions.length) showQuestion();
+    else showResult();
+  }
+
+  function showResult() {
+    const mbti =
+      (scores.E > scores.I ? "E" : "I") +
+      (scores.S > scores.N ? "S" : "N") +
+      (scores.T > scores.F ? "T" : "F") +
+      (scores.J > scores.P ? "J" : "P");
+
+    const result = catMap[mbti] || { cat: "Mystery Cat 🐾", desc: "A rare and unique feline spirit." };
+
+    document.getElementById("app").innerHTML = `
+      <h1>Your Result</h1>
+      <div class="chip">${mbti}</div>
+      <div class="result-cat">${result.cat}</div>
+      <p>${result.desc}</p>
+      <button onclick="startQuiz()">Retake Quiz</button>
+      <div class="tiny">Share idea: screenshot your result and post it 🐾</div>
+    `;
+  }
+
+  // ---- Floating Cat Faces ----
+  // Creates a field of floating cat faces that drift upward with different speeds/sizes.
+  const catEmojis = ["😺","😸","😹","😻","😼","😽","🙀","😿","😾","🐱"];
+  const catsLayer = document.getElementById("catsLayer");
+  const CAT_COUNT = 22;
+
+  function rand(min, max) { return Math.random() * (max - min) + min; }
+
+  function spawnCats() {
+    catsLayer.innerHTML = "";
+    for (let i = 0; i < CAT_COUNT; i++) {
+      const el = document.createElement("div");
+      el.className = "cat";
+      el.textContent = catEmojis[Math.floor(Math.random() * catEmojis.length)];
+
+      const left = rand(0, 100);
+      const size = rand(18, 46);
+      const duration = rand(10, 22);
+      const delay = rand(0, 12);
+      const opacity = rand(0.18, 0.42);
+
+      el.style.left = left + "vw";
+      el.style.fontSize = size + "px";
+      el.style.animationDuration = duration + "s";
+      el.style.animationDelay = "-" + delay + "s"; // negative starts them mid-flight
+      el.style.opacity = opacity;
+
+      catsLayer.appendChild(el);
+    }
+  }
+
+  spawnCats();
+  // Optional: refresh cats on resize for better distribution
+  window.addEventListener("resize", () => spawnCats());
 
 </script>
 </body>
