@@ -1,0 +1,127 @@
+/* s06.demo.css — vibrant demo styling */
+
+:root{
+  --bg1: #ffecd2;
+  --bg2: #fcb7ff;
+  --bg3: #b5fffc;
+
+  --ink: #1a1a1a;
+  --muted: #3b3b3b;
+
+  --card: rgba(255, 255, 255, 0.78);
+  --card-border: rgba(255, 255, 255, 0.45);
+
+  --accent1: #6a5cff;  /* purple */
+  --accent2: #ff4fd8;  /* pink */
+  --accent3: #00d4ff;  /* cyan */
+  --accent4: #00c389;  /* green */
+}
+
+* { box-sizing: border-box; }
+
+body{
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  color: var(--ink);
+  margin: 0;
+  padding: 40px 16px;
+
+  /* vibrant background */
+  background:
+    radial-gradient(900px 500px at 15% 10%, var(--bg2), transparent 55%),
+    radial-gradient(800px 500px at 85% 20%, var(--bg3), transparent 55%),
+    radial-gradient(900px 600px at 40% 95%, var(--bg1), transparent 60%),
+    linear-gradient(135deg, #101022, #0b0b14);
+}
+
+/* This targets your main content nicely even without a wrapper */
+body > h1,
+body > p,
+body > img{
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Headline */
+h1{
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  letter-spacing: -0.02em;
+  margin: 0 auto 14px;
+  line-height: 1.1;
+
+  /* fun gradient text */
+  background: linear-gradient(90deg, var(--accent1), var(--accent2), var(--accent3));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  text-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+/* Paragraphs as “cards” */
+p{
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  padding: 14px 16px;
+  border-radius: 16px;
+
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 1.05rem;
+
+  box-shadow:
+    0 12px 30px rgba(0,0,0,0.18),
+    0 1px 0 rgba(255,255,255,0.3) inset;
+
+  margin: 12px auto;
+}
+
+/* Links */
+a{
+  color: var(--accent1);
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 2px solid rgba(106, 92, 255, 0.35);
+  padding-bottom: 1px;
+  transition: transform 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+a:hover{
+  color: var(--accent2);
+  border-color: rgba(255, 79, 216, 0.5);
+  transform: translateY(-1px);
+}
+
+/* Image styling */
+img{
+  display: block;
+  width: min(860px, 100%);
+  height: auto;
+
+  margin: 18px auto 0;
+  border-radius: 18px;
+
+  box-shadow:
+    0 22px 60px rgba(0,0,0,0.35),
+    0 0 0 6px rgba(255,255,255,0.12);
+
+  transform: translateY(0);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+img:hover{
+  transform: translateY(-6px) scale(1.01);
+  box-shadow:
+    0 28px 80px rgba(0,0,0,0.45),
+    0 0 0 8px rgba(255,255,255,0.14);
+}
+
+/* Small screens */
+@media (max-width: 520px){
+  body{ padding: 28px 14px; }
+  p{ border-radius: 14px; }
+}
+}
