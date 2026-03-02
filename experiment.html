@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>What Cat Are You?</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(-45deg, #f5e6e8, #dfe9f3, #fef6e4, #e4f0f6);
+  background-size: 400% 400%;
+  animation: gradientMove 12s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.container {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(12px);
+  padding: 40px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: 0.5s ease;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 20px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 24px;
+  border-radius: 30px;
+  border: none;
+  background: #333;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #555;
+}
+
+.options button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  background: #fff;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.options button:hover {
+  background: #f0f0f0;
+}
+
+.progress {
+  height: 6px;
+  background: #ddd;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: #333;
+  transition: 0.3s;
+}
+
+.result-cat {
+  font-size: 60px;
+  margin: 20px 0;
+}
+
+.fade {
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+</style>
+</head>
+<body>
+
+<div class="container fade" id="app">
+  <h1>What Cat Are You?</h1>
+  <p>Answer 10 questions and discover your inner feline.</p>
+  <button onclick="startQuiz()">Start Quiz</button>
+</div>
+
+<script>
+
+const questions = [
+  { q: "At a party you...",
+    a: [
+      { text: "Talk to everyone", type: "E" },
+      { text: "Stick to close friends", type: "I" }
+    ]
+  },
+  { q: "You trust...",
+    a: [
+      { text: "Facts & reality", type: "S" },
+      { text: "Gut & imagination", type: "N" }
+    ]
+  },
+  { q: "Decisions are based on...",
+    a: [
+      { text: "Logic", type: "T" },
+      { text: "Feelings", type: "F" }
+    ]
+  },
+  { q: "Your life is...",
+    a: [
+      { text: "Structured", type: "J" },
+      { text: "Flexible", type: "P" }
+    ]
+  },
+  { q: "Your energy comes from...",
+    a: [
+      { text: "Social interaction", type: "E" },
+      { text: "Alone time", type: "I" }
+    ]
+  },
+  { q: "You focus on...",
+    a: [
+      { text: "Present details", type: "S" },
+      { text: "Future possibilities", type: "N" }
+    ]
+  },
+  { q: "Conflict is handled with...",
+    a: [
+      { text: "Rational debate", type: "T" },
+      { text: "Emotional understanding", type: "F" }
+    ]
+  },
+  { q: "Plans make you feel...",
+    a: [
+      { text: "Comfortable", type: "J" },
+      { text: "Restricted", type: "P" }
+    ]
+  },
+  { q: "You prefer...",
+    a: [
+      { text: "Group projects", type: "E" },
+      { text: "Independent work", type: "I" }
+    ]
+  },
+  { q: "You value...",
+    a: [
+      { text: "What is practical", type: "S" },
+      { text: "What is meaningful", type: "N" }
+    ]
+  }
+];
+
+let current = 0;
+let scores = { E:0, I:0, S:0, N:0, T:0, F:0, J:0, P:0 };
+
+function startQuiz() {
+  current = 0;
+  scores = { E:0, I:0, S:0, N:0, T:0, F:0, J:0, P:0 };
+  showQuestion();
+}
+
+function showQuestion() {
+  const app = document.getElementById("app");
+  const question = questions[current];
+
+  app.innerHTML = `
+    <div class="progress">
+      <div class="progress-bar" style="width:${(current/10)*100}%"></div>
+    </div>
+    <h1>${question.q}</h1>
+    <div class="options">
+      ${question.a.map(ans => 
+        `<button onclick="selectAnswer('${ans.type}')">${ans.text}</button>`
+      ).join("")}
+    </div>
+  `;
+}
+
+function selectAnswer(type) {
+  scores[type]++;
+  current++;
+  if(current < questions.length) {
+    showQuestion();
+  } else {
+    showResult();
+  }
+}
+
+function showResult() {
+  const type =
+    (scores.E > scores.I ? "E":"I") +
+    (scores.S > scores.N ? "S":"N") +
+    (scores.T > scores.F ? "T":"F") +
+    (scores.J > scores.P ? "J":"P");
+
+  const catMap = {
+    INTJ: {cat:"Black Cat 🐈‍⬛", desc:"Strategic, mysterious, independent."},
+    ENFP: {cat:"Orange Tabby 🐈", desc:"Playful, chaotic, energetic."},
+    INFJ: {cat:"Ragdoll 🐱", desc:"Gentle, intuitive, deep thinker."},
+    ISTJ: {cat:"British Shorthair 🐾", desc:"Calm, responsible, reliable."}
+  };
+
+  const result = catMap[type] || {cat:"Mystery Cat 🐾", desc:"A rare and unique feline spirit."};
+
+  document.getElementById("app").innerHTML = `
+    <h1>You are ${type}</h1>
+    <div class="result-cat">${result.cat}</div>
+    <p>${result.desc}</p>
+    <button onclick="startQuiz()">Retake Quiz</button>
+  `;
+}
+
+</script>
+</body>
+</html>
