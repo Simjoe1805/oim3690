@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Public Presence Lookup</title>
+  <link rel="stylesheet" href="CSS/experiment2.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>Public Presence Lookup</h1>
+      <p>
+        Use this to check publicly indexed information for your own identity.
+      </p>
+
+      <form id="lookupForm">
+        <div class="row">
+          <div>
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Jane Doe" required />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+          </div>
+        </div>
+
+        <label for="location">Location (optional)</label>
+        <input type="text" id="location" name="location" placeholder="City, State" />
+
+        <label for="company">Company (optional)</label>
+        <input type="text" id="company" name="company" placeholder="Acme Inc." />
+
+        <label class="consent">
+          <input type="checkbox" id="consent" required />
+          I confirm this lookup is for myself or with explicit permission.
+        </label>
+
+        <div class="actions">
+          <button type="submit" class="btn btn-primary">Generate Public Search Links</button>
+          <button type="button" id="clearBtn" class="btn btn-secondary">Clear</button>
+        </div>
+      </form>
+
+      <div id="results" class="results" hidden>
+        <h2>Suggested Searches</h2>
+        <div id="links"></div>
+        <div class="note">
+          This page does not scrape private systems. It generates links to public search queries.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function buildGoogleUrl(query) {
+      return "https://www.google.com/search?q=" + encodeURIComponent(query);
+    }
+
+    function addLink(container, label, url) {
+      const a = document.createElement("a");
+      a.className = "result-link";
+      a.href = url;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      a.textContent = label;
+      container.appendChild(a);
+    }
+
+    document.getElementById("lookupForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const location = document.getElementById("location").value.trim();
+      const company = document.getElementById("company").value.trim();
+
+      const linksBox = document.getElementById("links");
+      linksBox.innerHTML = "";
+
+      const baseIdentity = [name, location, company].filter(Boolean).join(" ");
+
+      addLink(linksBox, "General profile search", buildGoogleUrl('"' + name + '"'));
+      addLink(linksBox, "Exact email mentions", buildGoogleUrl('"' + email + '"'));
+      addLink(linksBox, "News mentions", buildGoogleUrl('"' + name + '" site:news'));
+      addLink(linksBox, "Professional profiles", buildGoogleUrl('"' + name + '" site:linkedin.com'));
+      addLink(linksBox, "Code profile mentions", buildGoogleUrl('"' + name + '" site:github.com'));
+      addLink(linksBox, "Potential data leak checks", buildGoogleUrl('"' + email + '" "paste" OR "leak"'));
+      addLink(linksBox, "Combined identity search", buildGoogleUrl(baseIdentity || name));
+
+      document.getElementById("results").hidden = false;
+    });
+
+    document.getElementById("clearBtn").addEventListener("click", function () {
+      document.getElementById("lookupForm").reset();
+      document.getElementById("links").innerHTML = "";
+      document.getElementById("results").hidden = true;
+    });
+  </script>
+</body>
+</html>
