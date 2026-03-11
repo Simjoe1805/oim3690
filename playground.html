@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Babson Spotlight</title>
+  <meta name="theme-color" content="#006644">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link
+    id="dynamic-favicon"
+    rel="icon"
+    type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23000'/%3E%3Crect x='6' y='6' width='52' height='52' rx='13' fill='%23006644'/%3E%3Cpath d='M22 16h14c7.7 0 12 4.4 12 10.4 0 4.2-2 7-5.7 8.6C47 36.2 50 39.5 50 45c0 7.1-5.1 11-13.7 11H22V16Zm10 16h3.5c3.7 0 5.6-1.6 5.6-4.3s-1.9-4.2-5.6-4.2H32v8.5Zm0 15.5h4.1c4.5 0 6.8-1.7 6.8-5.1 0-3.3-2.3-5.1-6.8-5.1H32v10.2Z' fill='white'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --babson-green: #006644;
+      --babson-green-soft: #0d8a5d;
+      --ink: #050505;
+      --paper: #ffffff;
+      --mist: #eff6f2;
+      --line: rgba(255, 255, 255, 0.14);
+      --shadow: 0 28px 60px rgba(0, 0, 0, 0.34);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Space Grotesk", sans-serif;
+      color: var(--paper);
+      background:
+        radial-gradient(circle at top, rgba(13, 138, 93, 0.34), transparent 28%),
+        radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.12), transparent 18%),
+        linear-gradient(135deg, #000000 0%, #000000 30%, #06271b 30%, #006644 58%, #eef6f1 58%, #ffffff 100%);
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: auto;
+      border-radius: 50%;
+      filter: blur(18px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::before {
+      width: 320px;
+      height: 320px;
+      top: 90px;
+      left: -90px;
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    body::after {
+      width: 360px;
+      height: 360px;
+      right: -120px;
+      bottom: 30px;
+      background: rgba(0, 102, 68, 0.22);
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      width: min(1120px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 48px 0 72px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 36px 20px 24px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.6rem 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.46);
+      letter-spacing: 0.18em;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 0.6rem;
+      height: 0.6rem;
+      border-radius: 50%;
+      background: var(--babson-green-soft);
+      box-shadow: 0 0 18px rgba(13, 138, 93, 0.85);
+    }
+
+    h1,
+    h2 {
+      font-family: "Cormorant Garamond", serif;
+      margin: 0;
+      letter-spacing: 0.02em;
+    }
+
+    h1 {
+      max-width: 10ch;
+      margin: 18px auto 16px;
+      font-size: clamp(3.2rem, 8vw, 6rem);
+      line-height: 0.92;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 0 auto;
+      font-size: 1rem;
+      line-height: 1.75;
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .stack {
+      display: grid;
+      gap: 24px;
+      margin-top: 26px;
+    }
+
+    .panel {
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .panel-dark {
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.62));
+    }
+
+    .panel-light {
+      color: #111;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(239, 246, 242, 0.94));
+      border-color: rgba(0, 0, 0, 0.08);
+    }
+
+    .media-panel {
+      padding: 28px 20px 30px;
+      text-align: center;
+    }
+
+    .media-panel h2,
+    .grid-card h2 {
+      font-size: clamp(2rem, 4.4vw, 3rem);
+      margin-bottom: 0.65rem;
+    }
+
+    .media-panel p,
+    .grid-card p,
+    .faq-intro {
+      margin: 0 auto;
+      max-width: 70ch;
+      line-height: 1.75;
+      color: inherit;
+      opacity: 0.85;
+    }
+
+    .video-frame-wrap {
+      display: flex;
+      justify-content: center;
+      margin: 1.5rem 0 1rem;
+    }
+
+    .short-frame {
+      width: min(100%, 360px);
+      aspect-ratio: 9 / 16;
+      border: 0;
+      border-radius: 26px;
+      background: #000;
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.35);
+    }
+
+    .audio-frame {
+      width: min(100%, 720px);
+      height: 166px;
+      border: 0;
+      border-radius: 22px;
+      background: transparent;
+      margin-top: 1.35rem;
+    }
+
+    .media-note {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.68);
+    }
+
+    .media-actions {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .media-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 172px;
+      padding: 0.85rem 1.15rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--paper);
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+    }
+
+    .media-link:hover,
+    .media-link:focus-visible {
+      transform: translateY(-1px);
+      background: rgba(13, 138, 93, 0.2);
+      border-color: rgba(13, 138, 93, 0.55);
+    }
+
+    .grid-two {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .grid-card {
+      padding: 26px;
+    }
+
+    .map-frame {
+      width: 100%;
+      min-height: 360px;
+      border: 0;
+      border-radius: 22px;
+      margin-top: 1.1rem;
+      background: #d9e7df;
+    }
+
+    .canvas-wrap {
+      display: grid;
+      place-items: center;
+      gap: 14px;
+      margin-top: 1.2rem;
+    }
+
+    canvas {
+      width: min(100%, 420px);
+      height: auto;
+      border-radius: 24px;
+      background: transparent;
+    }
+
+    .faq {
+      margin-top: 24px;
+      padding: 30px 22px;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    details {
+      border-radius: 20px;
+      padding: 0;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .panel-light details {
+      background: rgba(0, 102, 68, 0.06);
+      border-color: rgba(0, 102, 68, 0.12);
+    }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 18px 22px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::after {
+      content: "+";
+      font-size: 1.4rem;
+      line-height: 1;
+      transition: transform 180ms ease;
+    }
+
+    details[open] summary::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      padding: 0 22px 18px;
+      line-height: 1.75;
+      opacity: 0.85;
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 22px;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.68);
+    }
+
+    @media (max-width: 860px) {
+      main {
+        width: min(100% - 1rem, 1120px);
+        padding-top: 28px;
+      }
+
+      .grid-two {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-card,
+      .media-panel,
+      .faq {
+        padding: 22px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="eyebrow">Babson Energy</div>
+      <h1>Babson in motion.</h1>
+      <p>
+        A black, white, and Babson Green one-page showcase with a centered YouTube Shorts embed,
+        official audio for GIV&#274;ON&rsquo;s &ldquo;MUD,&rdquo; a custom canvas badge, a campus map, and a collapsible FAQ.
+      </p>
+    </section>
+
+    <section class="panel panel-dark media-panel">
+      <h2>Featured Short</h2>
+      <p>The video stays centered on the page and uses YouTube&rsquo;s embed player, with a direct Shorts fallback if inline playback is blocked.</p>
+      <div class="video-frame-wrap">
+        <iframe
+          class="short-frame"
+          src="https://www.youtube-nocookie.com/embed/HDhK6SZzkgE?playsinline=1&rel=0&loop=1&playlist=HDhK6SZzkgE"
+          title="Babson themed YouTube Short"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="media-actions">
+        <a class="media-link" href="https://www.youtube.com/shorts/HDhK6SZzkgE" target="_blank" rel="noopener noreferrer">Open Short</a>
+      </div>
+      <div class="media-note">Source: YouTube Shorts</div>
+    </section>
+
+    <section class="panel panel-dark media-panel">
+      <h2>Official Audio</h2>
+      <p>This now uses the official SoundCloud track, which is a more reliable embeddable player than the label-controlled YouTube music upload.</p>
+      <iframe
+        class="audio-frame"
+        scrolling="no"
+        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/giveon/mud&color=%23006644&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=true&visual=false"
+        title="GIVEON - MUD official audio"
+        loading="lazy"
+        allow="autoplay">
+      </iframe>
+      <div class="media-actions">
+        <a class="media-link" href="https://soundcloud.com/giveon/mud" target="_blank" rel="noopener noreferrer">Open Song</a>
+      </div>
+    </section>
+
+    <section class="grid-two">
+      <article class="panel panel-light grid-card">
+        <h2>Find Babson</h2>
+        <p>The map is embedded directly so the location is visible without leaving the page.</p>
+        <iframe
+          class="map-frame"
+          src="https://www.google.com/maps?q=Babson%20College%2C%20231%20Forest%20Street%2C%20Babson%20Park%2C%20MA%2002457&output=embed"
+          title="Google map of Babson College"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </article>
+
+      <article class="panel panel-light grid-card">
+        <h2>Canvas Logo</h2>
+        <p>A custom Babson-inspired badge is drawn with the <code>&lt;canvas&gt;</code> API and reused to generate the favicon.</p>
+        <div class="canvas-wrap">
+          <canvas id="babsonCanvas" width="460" height="280" aria-label="Canvas drawn Babson inspired logo" role="img">
+            Your browser does not support the canvas element.
+          </canvas>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel panel-dark faq">
+      <h2>FAQ</h2>
+      <p class="faq-intro">These answers collapse and expand with native HTML details elements, so the interaction works without any extra libraries.</p>
+      <div class="faq-list">
+        <details open>
+          <summary>What colors shape this page?</summary>
+          <div class="faq-answer">
+            The palette is built around black, white, and Babson Green, using the official Babson web green value of <code>#006644</code>.
+          </div>
+        </details>
+        <details>
+          <summary>Is the video centered on all screen sizes?</summary>
+          <div class="faq-answer">
+            Yes. The Shorts iframe sits inside a flex container that keeps it centered, and the width scales down cleanly on phones.
+          </div>
+        </details>
+        <details>
+          <summary>Why is the audio embedded from SoundCloud?</summary>
+          <div class="faq-answer">
+            The official SoundCloud player is embeddable and more dependable here than the music-label YouTube widget, while still keeping the song sourced from the artist account.
+          </div>
+        </details>
+        <details>
+          <summary>How was the favicon added?</summary>
+          <div class="faq-answer">
+            The page starts with an inline SVG favicon and then upgrades it at runtime to a PNG generated from the canvas badge.
+          </div>
+        </details>
+      </div>
+      <div class="footer-note">Browser autoplay rules may require a click before external media starts playing sound.</div>
+    </section>
+  </main>
+
+  <script>
+    function drawRoundedRect(ctx, x, y, width, height, radius) {
+      const r = Math.min(radius, width / 2, height / 2);
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.arcTo(x + width, y, x + width, y + height, r);
+      ctx.arcTo(x + width, y + height, x, y + height, r);
+      ctx.arcTo(x, y + height, x, y, r);
+      ctx.arcTo(x, y, x + width, y, r);
+      ctx.closePath();
+    }
+
+    function drawBadge(ctx, width, height, compact) {
+      ctx.clearRect(0, 0, width, height);
+
+      const padding = compact ? width * 0.1 : 18;
+      const radius = compact ? width * 0.18 : 26;
+
+      drawRoundedRect(ctx, padding, padding, width - padding * 2, height - padding * 2, radius);
+      const shell = ctx.createLinearGradient(0, padding, width, height - padding);
+      shell.addColorStop(0, "#000000");
+      shell.addColorStop(0.55, "#032c1e");
+      shell.addColorStop(1, "#006644");
+      ctx.fillStyle = shell;
+      ctx.fill();
+
+      ctx.lineWidth = compact ? width * 0.045 : 3;
+      ctx.strokeStyle = "rgba(255,255,255,0.72)";
+      ctx.stroke();
+
+      ctx.save();
+      ctx.translate(width / 2, height / 2);
+
+      const orb = ctx.createRadialGradient(0, -10, compact ? 6 : 12, 0, -10, compact ? width * 0.42 : 120);
+      orb.addColorStop(0, "rgba(255,255,255,0.95)");
+      orb.addColorStop(0.3, "rgba(255,255,255,0.34)");
+      orb.addColorStop(1, "rgba(255,255,255,0)");
+      ctx.fillStyle = orb;
+      ctx.beginPath();
+      ctx.arc(0, 0, compact ? width * 0.36 : 94, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = "#ffffff";
+      ctx.font = `${compact ? "bold 32px" : "bold 136px"} "Space Grotesk", sans-serif`;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText("B", 0, compact ? 4 : 12);
+
+      ctx.strokeStyle = "rgba(13,138,93,0.92)";
+      ctx.lineWidth = compact ? 3 : 9;
+      ctx.beginPath();
+      ctx.arc(0, 0, compact ? width * 0.25 : 66, Math.PI * 0.2, Math.PI * 1.8);
+      ctx.stroke();
+
+      ctx.restore();
+
+      ctx.fillStyle = "#ffffff";
+      ctx.textAlign = "center";
+      ctx.font = `${compact ? "600 10px" : "600 22px"} "Space Grotesk", sans-serif`;
+      ctx.fillText("BABSON", width / 2, compact ? height - 14 : height - 42);
+
+      if (!compact) {
+        ctx.fillStyle = "rgba(255,255,255,0.78)";
+        ctx.font = '500 13px "Space Grotesk", sans-serif';
+        ctx.fillText("ENTREPRENEURIAL SPOTLIGHT", width / 2, height - 20);
+      }
+    }
+
+    const logoCanvas = document.getElementById("babsonCanvas");
+    const logoContext = logoCanvas.getContext("2d");
+    const faviconCanvas = document.createElement("canvas");
+    faviconCanvas.width = 64;
+    faviconCanvas.height = 64;
+    const faviconContext = faviconCanvas.getContext("2d");
+
+    function renderBranding() {
+      drawBadge(logoContext, logoCanvas.width, logoCanvas.height, false);
+      drawBadge(faviconContext, faviconCanvas.width, faviconCanvas.height, true);
+      document.getElementById("dynamic-favicon").href = faviconCanvas.toDataURL("image/png");
+    }
+
+    renderBranding();
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(renderBranding);
+    }
+  </script>
+</body>
+</html>
