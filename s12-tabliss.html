@@ -1,12 +1,99 @@
-<!DOCTYPE html> 
-<html lang="en">     
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Tabliss — Simple Page</title>
-  <link rel="stylesheet" href="CSS/s12-tabliss.css"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a1215">
+  <title>Babson Tabliss</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="CSS/s12-tabliss.css">
 </head>
 <body>
-    <div>12:06:07</div>
-<body>
+  <main class="hero">
+    <section class="clock-shell">
+      <p class="clock-kicker">Babson College</p>
+      <time class="clock-time" id="clock-time" aria-label="Current Eastern time">12:00:00 AM</time>
+      <p class="clock-zone" id="clock-zone">Loading Eastern Time...</p>
+    </section>
+
+    <nav class="social-bar" aria-label="Social links">
+      <a
+        class="social-link linkedin"
+        href="https://www.linkedin.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Open LinkedIn">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4.98 3.5A2.48 2.48 0 1 0 5 8.46a2.48 2.48 0 0 0-.02-4.96ZM3 9h4v12H3V9Zm7 0h3.83v1.64h.06c.53-1.01 1.83-2.08 3.76-2.08 4.02 0 4.76 2.65 4.76 6.09V21h-4v-5.53c0-1.32-.02-3.01-1.84-3.01-1.84 0-2.12 1.44-2.12 2.92V21h-4V9Z"/>
+        </svg>
+        <span class="sr-only">LinkedIn</span>
+      </a>
+
+      <a
+        class="social-link github"
+        href="https://github.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Open GitHub">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.05c-3.34.73-4.04-1.42-4.04-1.42-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.23 1.84 1.23 1.08 1.83 2.82 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.9 0-1.31.47-2.37 1.23-3.21-.12-.3-.53-1.53.12-3.18 0 0 1.01-.32 3.3 1.22A11.37 11.37 0 0 1 12 6.58c1.02 0 2.04.14 3 .41 2.29-1.54 3.29-1.22 3.29-1.22.66 1.65.25 2.88.13 3.18.77.84 1.22 1.9 1.22 3.21 0 4.58-2.81 5.59-5.49 5.89.43.38.82 1.12.82 2.26v3.35c0 .32.21.7.83.58A12 12 0 0 0 12 .5Z"/>
+        </svg>
+        <span class="sr-only">GitHub</span>
+      </a>
+
+      <a
+        class="social-link instagram"
+        href="https://www.instagram.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Open Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7.75 2h8.5A5.76 5.76 0 0 1 22 7.75v8.5A5.76 5.76 0 0 1 16.25 22h-8.5A5.76 5.76 0 0 1 2 16.25v-8.5A5.76 5.76 0 0 1 7.75 2Zm0 1.8A3.96 3.96 0 0 0 3.8 7.75v8.5a3.96 3.96 0 0 0 3.95 3.95h8.5a3.96 3.96 0 0 0 3.95-3.95v-8.5a3.96 3.96 0 0 0-3.95-3.95h-8.5Zm8.95 1.45a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2ZM12 6.8A5.2 5.2 0 1 1 6.8 12 5.2 5.2 0 0 1 12 6.8Zm0 1.8A3.4 3.4 0 1 0 15.4 12 3.4 3.4 0 0 0 12 8.6Z"/>
+        </svg>
+        <span class="sr-only">Instagram</span>
+      </a>
+    </nav>
+  </main>
+
+  <script>
+    const timeElement = document.getElementById("clock-time");
+    const zoneElement = document.getElementById("clock-zone");
+
+    const timeFormatter = new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/New_York",
+      hour: "numeric",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true
+    });
+
+    const dateFormatter = new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/New_York",
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      year: "numeric"
+    });
+
+    const zoneFormatter = new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/New_York",
+      timeZoneName: "short"
+    });
+
+    function updateClock() {
+      const now = new Date();
+      const zoneName = zoneFormatter.formatToParts(now).find(
+        (part) => part.type === "timeZoneName"
+      )?.value || "ET";
+
+      timeElement.textContent = timeFormatter.format(now);
+      zoneElement.textContent = `${dateFormatter.format(now)} | ${zoneName}`;
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
+</body>
 </html>
