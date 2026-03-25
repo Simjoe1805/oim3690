@@ -13,5 +13,4 @@ time: 11:30 AM - 1:00 PM
  [Mini Project 1](https://github.com/Simjoe1805/project1) 
 
 
- Link to project 1v2 website : 
- Link to project1v2 repository: 
+[mini project 2 proposal](https://github.com/Simjoe1805/miniproject2/blob/main/proposal.md)
