@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>s17 Demo Practice</title>
+</head>
+<body>
+  <h1>Button Click Practice</h1>
+  <p id="count-text">You clicked 0 times.</p>
+  <button id="click-btn">Click Me</button>
+
+  <script>
+    const firstname = "michael";
+    const lastname = "scott";
+    let name = `${firstname} ${lastname}`;
+    const isManager = true;
+    console.log(typeof isManager);
+
+    let count = 0;
+    const button = document.querySelector("#click-btn");
+    const countText = document.querySelector("#count-text");
+
+    button.addEventListener("click", function () {
+      count++;
+      countText.textContent = `You clicked ${count} times.`;
+    });
+  </script>
+</body>
+</html>

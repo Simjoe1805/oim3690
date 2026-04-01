@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Greeting Demo</title>
+</head>
+<body>
+  <h1>Greeting Practice</h1>
+
+  <input id="name-input" type="text" placeholder="Enter your name">
+  <button id="greet-button" type="button">Greet Me</button>
+  <p id="greeting-text"></p>
+
+  <script>
+    const nameInput = document.querySelector("#name-input");
+    const greetButton = document.querySelector("#greet-button");
+    const greetingText = document.querySelector("#greeting-text");
+
+    greetButton.addEventListener("click", function () {
+      const userName = nameInput.value.trim();
+
+      if (userName === "") {
+        greetingText.textContent = "Please enter your name.";
+        return;
+      }
+
+      greetingText.textContent = `Hello, ${userName}!`;
+    });
+  </script>
+</body>
+</html>

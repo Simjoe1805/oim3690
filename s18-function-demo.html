@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>S18 Function Demo</title>
+</head>
+<body>
+  <h1>Input Practice</h1>
+
+  <label for="x">X</label>
+  <input id="x" type="number" placeholder="Enter x">
+
+  <label for="y">Y</label>
+  <input id="y" type="number" placeholder="Enter y">
+
+  <button id="run-btn" type="button">Run</button>
+  <p id="result">Result: </p>
+
+  <script>
+    const x = document.getElementById("x");
+    const y = document.getElementById("y");
+    const button = document.querySelector("button");
+    const result = document.getElementById("result");
+
+    button.addEventListener("click", function () {
+      const sum = Number(x.value) + Number(y.value);
+      result.textContent = `Result: ${sum}`;
+    });
+  </script>
+</body>
+</html>
