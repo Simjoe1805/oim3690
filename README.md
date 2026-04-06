@@ -14,3 +14,4 @@ time: 11:30 AM - 1:00 PM
 
 
 [mini project 2 proposal](https://github.com/Simjoe1805/miniproject2/blob/main/proposal.md)
+[mini project 2 website](https://simjoe1805.github.io/miniproject2/) 
