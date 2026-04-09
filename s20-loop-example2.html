@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>S20 Loop Example 2</title>
+</head>
+<body>
+  <h1>Student List</h1>
+  <form id="student-form">
+    <label for="student-name">Student Name</label>
+    <input id="student-name" type="text" placeholder="Enter name">
+
+    <label for="student-grade">Student Grade</label>
+    <input id="student-grade" type="text" placeholder="Enter grade">
+
+    <button type="submit">Add or Update Student</button>
+  </form>
+
+  <p id="status"></p>
+  <div id="student-list"></div>
+
+  <script>
+    const students = [
+      { name: 'Alice', grade: 'A' },
+      { name: 'Bob', grade: 'B' },
+      { name: 'Charlie', grade: 'C' }
+    ];
+
+    const list = document.querySelector('#student-list');
+    const form = document.querySelector('#student-form');
+    const nameInput = document.querySelector('#student-name');
+    const gradeInput = document.querySelector('#student-grade');
+    const status = document.querySelector('#status');
+
+    function renderStudents() {
+      list.innerHTML = '';
+
+      for (let i = 0; i < students.length; i++) {
+        const card = document.createElement('div');
+        card.textContent = `${students[i].name}: ${students[i].grade}`;
+        list.appendChild(card);
+      }
+    }
+
+    function addOrUpdateStudent(studentName, newGrade) {
+      const cleanName = studentName.trim();
+      const cleanGrade = newGrade.trim().toUpperCase();
+
+      if (!cleanName || !cleanGrade) {
+        status.textContent = 'Please enter both a student name and a grade.';
+        return;
+      }
+
+      let found = false;
+
+      for (let i = 0; i < students.length; i++) {
+        if (students[i].name.toLowerCase() === cleanName.toLowerCase()) {
+          students[i].grade = cleanGrade;
+          status.textContent = `${students[i].name} was updated to grade ${cleanGrade}.`;
+          found = true;
+          break;
+        }
+      }
+
+      if (!found) {
+        students.push({ name: cleanName, grade: cleanGrade });
+        status.textContent = `${cleanName} was added with grade ${cleanGrade}.`;
+      }
+
+      renderStudents();
+    }
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      addOrUpdateStudent(nameInput.value, gradeInput.value);
+      form.reset();
+      nameInput.focus();
+    });
+
+    renderStudents();
+  </script>
+</body>
+</html>

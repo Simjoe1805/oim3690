@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loop Challenges</title>
+</head>
+<body>
+  <h1>Loop Challenges</h1>
+  <p>Numbers: <span id="numbers-display"></span></p>
+
+  <h2>Number Input Tab</h2>
+  <div id="number-controls">
+    <label for="number-input">Enter Number</label>
+    <input id="number-input" type="number" placeholder="Type a number">
+    <button id="add-btn" type="button">Add Number</button>
+    <button id="remove-btn" type="button">Remove Number</button>
+    <p id="message"></p>
+  </div>
+
+  <h2>1. Build a List</h2>
+  <ul id="number-list"></ul>
+
+  <h2>2. Sum It Up</h2>
+  <p id="sum-output"></p>
+
+  <h2>3. Find the Max</h2>
+  <p id="max-output"></p>
+
+  <h2>4. Count Positives</h2>
+  <p id="positive-output"></p>
+
+  <h2>5. Find Evens</h2>
+  <p id="evens-output"></p>
+
+  <script>
+    const numbers = [4, -8, 15, -16, 23, 42, -3];
+
+    const numbersDisplay = document.querySelector('#numbers-display');
+    const numberInput = document.querySelector('#number-input');
+    const addButton = document.querySelector('#add-btn');
+    const removeButton = document.querySelector('#remove-btn');
+    const message = document.querySelector('#message');
+    const numberList = document.querySelector('#number-list');
+    const sumOutput = document.querySelector('#sum-output');
+    const maxOutput = document.querySelector('#max-output');
+    const positiveOutput = document.querySelector('#positive-output');
+    const evensOutput = document.querySelector('#evens-output');
+
+    function renderChallenges() {
+      let total = 0;
+      let max = null;
+      let positiveCount = 0;
+      const evens = [];
+
+      numberList.innerHTML = '';
+      numbersDisplay.textContent = `[${numbers.join(', ')}]`;
+
+      for (let i = 0; i < numbers.length; i++) {
+        const value = numbers[i];
+
+        const li = document.createElement('li');
+        li.textContent = value;
+        numberList.appendChild(li);
+
+        total += value;
+
+        if (max === null || value > max) {
+          max = value;
+        }
+
+        if (value > 0) {
+          positiveCount += 1;
+        }
+
+        if (value % 2 === 0) {
+          evens.push(value);
+        }
+      }
+
+      sumOutput.textContent = `Total: ${total}`;
+      maxOutput.textContent = `Largest Number: ${max === null ? 'N/A' : max}`;
+      positiveOutput.textContent = `Positive Count: ${positiveCount}`;
+      evensOutput.textContent = `Even Numbers: [${evens.join(', ')}]`;
+    }
+
+    function getInputNumber() {
+      if (numberInput.value === '') {
+        message.textContent = 'Please enter a number first.';
+        return null;
+      }
+
+      const parsed = Number(numberInput.value);
+
+      if (Number.isNaN(parsed)) {
+        message.textContent = 'That is not a valid number.';
+        return null;
+      }
+
+      return parsed;
+    }
+
+    addButton.addEventListener('click', function () {
+      const value = getInputNumber();
+      if (value === null) {
+        return;
+      }
+
+      numbers.push(value);
+      message.textContent = `Added ${value}.`;
+      numberInput.value = '';
+      numberInput.focus();
+      renderChallenges();
+    });
+
+    removeButton.addEventListener('click', function () {
+      const value = getInputNumber();
+      if (value === null) {
+        return;
+      }
+
+      let indexToRemove = -1;
+
+      for (let i = 0; i < numbers.length; i++) {
+        if (numbers[i] === value) {
+          indexToRemove = i;
+          break;
+        }
+      }
+
+      if (indexToRemove === -1) {
+        message.textContent = `${value} was not found.`;
+      } else {
+        numbers.splice(indexToRemove, 1);
+        message.textContent = `Removed ${value}.`;
+        renderChallenges();
+      }
+
+      numberInput.value = '';
+      numberInput.focus();
+    });
+
+    renderChallenges();
+  </script>
+</body>
+</html>
