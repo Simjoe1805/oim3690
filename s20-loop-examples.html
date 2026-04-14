@@ -16,12 +16,15 @@
 
     for (let i = 0; i < 5; i++) {
       if (i < rating) {
-        stars += '★';
+        stars += '\u2605';
       } else {
-        stars += '☆';
+        stars += '\u2606';
       }
     }
-    container.textContent = stars;
+
+    if (container) {
+      container.textContent = stars;
+    }
   </script>
 </body>
 </html>
