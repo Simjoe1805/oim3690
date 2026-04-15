@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mass Town Explorer</title>
+</head>
+<body>
+  <h1>Mass Town Explorer</h1>
+
+  <label for="search-input">Search Town by Name</label>
+  <input id="search-input" type="text" placeholder="Type a town name">
+
+  <p id="match-count">Matched towns: 0</p>
+  <p id="status">Loading data...</p>
+
+  <ul id="town-list"></ul>
+
+  <script src="./config.js"></script>
+  <script>
+    const API_URL = 'https://oim.108122.xyz/mass';
+    const X_TOKEN = (window.APP_CONFIG && window.APP_CONFIG.X_TOKEN)
+      || (typeof OIM_TOKEN !== 'undefined' ? OIM_TOKEN : '');
+
+    const searchInput = document.querySelector('#search-input');
+    const matchCount = document.querySelector('#match-count');
+    const status = document.querySelector('#status');
+    const townList = document.querySelector('#town-list');
+
+    let allTowns = [];
+
+    function renderTowns(searchText = '') {
+      const query = searchText.trim().toLowerCase();
+      let matched = [];
+
+      for (let i = 0; i < allTowns.length; i++) {
+        const town = allTowns[i];
+        const townName = String(town.name || '');
+
+        if (query === '' || townName.toLowerCase().includes(query)) {
+          matched.push(town);
+        }
+      }
+
+      matchCount.textContent = `Matched towns: ${matched.length}`;
+
+      townList.innerHTML = '';
+      const displayLimit = 10;
+      const displayItems = matched.slice(0, displayLimit);
+
+      for (let i = 0; i < displayItems.length; i++) {
+        const town = displayItems[i];
+        const li = document.createElement('li');
+        li.textContent = `${town.name} | ${town.county} | Population: ${town.population}`;
+        townList.appendChild(li);
+      }
+
+      if (matched.length === 0) {
+        status.textContent = 'No towns matched your search.';
+      } else if (matched.length > displayLimit) {
+        status.textContent = `Showing first ${displayLimit} of ${matched.length} matched towns.`;
+      } else {
+        status.textContent = `Showing ${displayItems.length} matched towns.`;
+      }
+    }
+
+    async function loadTowns() {
+      try {
+        if (!X_TOKEN) {
+          throw new Error('Missing X-Token in config.js');
+        }
+
+        const response = await fetch(API_URL, {
+          headers: {
+            'X-Token': X_TOKEN
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error(`Request failed with status ${response.status}`);
+        }
+
+        const result = await response.json();
+        const rawData = Array.isArray(result.data) ? result.data : [];
+
+        allTowns = rawData.filter(function (item) {
+          return item && item.type === 'town';
+        });
+
+        renderTowns('');
+      } catch (error) {
+        status.textContent = `Could not load towns: ${error.message}`;
+      }
+    }
+
+    searchInput.addEventListener('input', function () {
+      renderTowns(searchInput.value);
+    });
+
+    loadTowns();
+  </script>
+</body>
+</html>
