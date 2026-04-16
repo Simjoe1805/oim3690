@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Score Analyzer</title>
+</head>
+<body>
+  <h1>Score Analyzer</h1>
+
+  <h2>Scores and Grades</h2>
+  <ul id="score-list"></ul>
+
+  <h2>Summary</h2>
+  <p id="total-count"></p>
+  <p id="average-score"></p>
+  <p id="highest-score"></p>
+  <p id="lowest-score"></p>
+  <p id="passing-count"></p>
+
+  <script>
+    const scores = [88, 72, 95, 63, 81, 56, 90];
+
+    const scoreList = document.getElementById("score-list");
+    const totalCount = document.getElementById("total-count");
+    const averageScore = document.getElementById("average-score");
+    const highestScore = document.getElementById("highest-score");
+    const lowestScore = document.getElementById("lowest-score");
+    const passingCount = document.getElementById("passing-count");
+
+    function getGrade(score) {
+      if (score >= 90) {
+        return "A";
+      } else if (score >= 80) {
+        return "B";
+      } else if (score >= 70) {
+        return "C";
+      } else if (score >= 60) {
+        return "D";
+      } else {
+        return "F";
+      }
+    }
+
+    function renderScoreAnalyzer() {
+      scoreList.innerHTML = "";
+
+      if (scores.length === 0) {
+        totalCount.textContent = "Total number of scores: 0";
+        averageScore.textContent = "Average score: N/A";
+        highestScore.textContent = "Highest score: N/A";
+        lowestScore.textContent = "Lowest score: N/A";
+        passingCount.textContent = "Number of passing scores (>= 60): 0";
+        return;
+      }
+
+      let total = 0;
+      let highest = scores[0];
+      let lowest = scores[0];
+      let passed = 0;
+
+      for (let i = 0; i < scores.length; i++) {
+        const score = scores[i];
+        const grade = getGrade(score);
+
+        const li = document.createElement("li");
+        li.textContent = `Score: ${score} | Grade: ${grade}`;
+        scoreList.appendChild(li);
+
+        total += score;
+
+        if (score > highest) {
+          highest = score;
+        }
+
+        if (score < lowest) {
+          lowest = score;
+        }
+
+        if (score >= 60) {
+          passed += 1;
+        }
+      }
+
+      const average = total / scores.length;
+
+      totalCount.textContent = `Total number of scores: ${scores.length}`;
+      averageScore.textContent = `Average score: ${average.toFixed(1)}`;
+      highestScore.textContent = `Highest score: ${highest}`;
+      lowestScore.textContent = `Lowest score: ${lowest}`;
+      passingCount.textContent = `Number of passing scores (>= 60): ${passed}`;
+    }
+
+    renderScoreAnalyzer();
+  </script>
+</body>
+</html>

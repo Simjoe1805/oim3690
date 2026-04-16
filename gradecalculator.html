@@ -3,37 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Class Grade Calculator</title>
+  <title>Grade Calculator</title>
 </head>
 <body>
-  <h1>Class Grade Calculator</h1>
+  <h1>Grade Calculator</h1>
 
-  <h2>Quizzes</h2>
-  <label for="quizWeight">Weight (%)</label>
-  <input id="quizWeight" type="number" value="10">
-  <label for="quizScore">Score</label>
-  <input id="quizScore" type="number" value="85">
-
-  <h2>Exams</h2>
-  <label for="examWeight">Weight (%)</label>
-  <input id="examWeight" type="number" value="40">
-  <label for="examScore">Score</label>
-  <input id="examScore" type="number" value="90">
-
-  <h2>Participation</h2>
-  <label for="participationWeight">Weight (%)</label>
-  <input id="participationWeight" type="number" value="20">
-  <label for="participationScore">Score</label>
-  <input id="participationScore" type="number" value="100">
-
-  <h2>Projects</h2>
-  <label for="projectWeight">Weight (%)</label>
-  <input id="projectWeight" type="number" value="30">
-  <label for="projectScore">Score</label>
-  <input id="projectScore" type="number" value="92">
-
-  <br><br>
-  <button id="calculateButton">Calculate Final Grade</button>
+  <label for="score">Score</label>
+  <input id="score" type="number" placeholder="Enter score">
+  <button id="check-grade" type="button">Check Grade</button>
   <p id="result"></p>
 
   <script>
@@ -51,50 +28,20 @@
       }
     }
 
-    const quizWeight = document.getElementById("quizWeight");
-    const quizScore = document.getElementById("quizScore");
-    const examWeight = document.getElementById("examWeight");
-    const examScore = document.getElementById("examScore");
-    const participationWeight = document.getElementById("participationWeight");
-    const participationScore = document.getElementById("participationScore");
-    const projectWeight = document.getElementById("projectWeight");
-    const projectScore = document.getElementById("projectScore");
-    const calculateButton = document.getElementById("calculateButton");
+    const scoreInput = document.getElementById("score");
+    const button = document.getElementById("check-grade");
     const result = document.getElementById("result");
 
-    calculateButton.addEventListener("click", function () {
-      const quizzesWeightValue = Number(quizWeight.value);
-      const quizzesScoreValue = Number(quizScore.value);
-      const examsWeightValue = Number(examWeight.value);
-      const examsScoreValue = Number(examScore.value);
-      const participationWeightValue = Number(participationWeight.value);
-      const participationScoreValue = Number(participationScore.value);
-      const projectsWeightValue = Number(projectWeight.value);
-      const projectsScoreValue = Number(projectScore.value);
+    button.addEventListener("click", function () {
+      const score = Number(scoreInput.value);
 
-      const totalWeight =
-        quizzesWeightValue +
-        examsWeightValue +
-        participationWeightValue +
-        projectsWeightValue;
-
-      if (totalWeight !== 100) {
-        result.textContent =
-          "The weights must add up to 100%. Right now they add up to " +
-          totalWeight +
-          "%.";
+      if (Number.isNaN(score)) {
+        result.textContent = "Please enter a valid number.";
         return;
       }
 
-      const finalScore =
-        quizzesScoreValue * (quizzesWeightValue / 100) +
-        examsScoreValue * (examsWeightValue / 100) +
-        participationScoreValue * (participationWeightValue / 100) +
-        projectsScoreValue * (projectsWeightValue / 100);
-
-      const grade = getGrade(finalScore);
-      result.textContent =
-        "Final score: " + finalScore.toFixed(1) + "% | Letter grade: " + grade;
+      const grade = getGrade(score);
+      result.textContent = "Grade: " + grade;
     });
   </script>
 </body>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping List</title>
+</head>
+<body>
+  <h1>Shopping List</h1>
+
+  <input id="item-input" type="text" placeholder="Add an item">
+  <button id="add-button" type="button">Add Item</button>
+
+  <ul id="shopping-list"></ul>
+
+  <script>
+    const items = ['Milk', 'Eggs', 'Bread'];
+
+    const ul = document.getElementById('shopping-list');
+    const itemInput = document.getElementById('item-input');
+    const addButton = document.getElementById('add-button');
+
+    function renderList() {
+      ul.innerHTML = '';
+
+      for (let i = 0; i < items.length; i++) {
+        const li = document.createElement('li');
+        li.textContent = items[i];
+        ul.appendChild(li);
+      }
+    }
+
+    addButton.addEventListener('click', function () {
+      const newItem = itemInput.value.trim();
+
+      if (!newItem) {
+        return;
+      }
+
+      items.push(newItem);
+      itemInput.value = '';
+      renderList();
+    });
+
+    renderList();
+  </script>
+</body>
+</html>
