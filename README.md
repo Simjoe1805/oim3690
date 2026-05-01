@@ -2,6 +2,9 @@
 
 This is the course repository for OIM3690 
 
+#content 
+- the content of this repository includes the css, js, html, and also markdown. 
+
 time: 11:30 AM - 1:00 PM 
 
  
@@ -14,7 +17,10 @@ time: 11:30 AM - 1:00 PM
 
 
 [mini project 2 proposal](https://github.com/Simjoe1805/miniproject2/blob/main/proposal.md)
-[mini project 2 website][https://simjoe1805.github.io/miniproject2/] 
+[mini project 2 website](https://simjoe1805.github.io/miniproject2/)
 
 [miniproject 3 repository](https://github.com/Simjoe1805/miniproject3)
 [miniproject 3 website](https://simjoe1805.github.io/miniproject3) 
+
+[Final project proposal in repository](https://github.com/Simjoe1805/finalproject) 
+[Final project website](https://simjoe1805.github.io/finalproject/)
